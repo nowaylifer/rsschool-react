@@ -10,9 +10,11 @@ axiosSpotify.interceptors.request.use((config) => {
   return config;
 });
 
-const search = async (query: string) => {
+type QueryType = 'album' | 'artist' | 'track';
+
+const search = async (query: string, type: QueryType | QueryType[] = 'album') => {
   const response = await axiosSpotify.get('/search', {
-    params: { q: query, type: ['album', 'artist', 'track'], limit: 20 },
+    params: { q: query.trim(), type, limit: 20 },
   });
 
   return response.data;

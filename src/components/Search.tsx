@@ -1,15 +1,17 @@
-import { Component } from 'react';
-import { FormEvent } from 'react';
+import { Component, ComponentProps, FormEvent } from 'react';
+import Input from './Input';
+import Button from './Button';
+import { cn } from '../utils';
 
-type SearchProps = {
+interface SearchProps extends ComponentProps<'div'> {
   onSearch: (query: string) => void;
-};
+}
 
-type State = {
+interface SearchState {
   query: string;
-};
+}
 
-class Search extends Component<SearchProps, State> {
+class Search extends Component<SearchProps, SearchState> {
   state = {
     query: '',
   };
@@ -24,10 +26,11 @@ class Search extends Component<SearchProps, State> {
   };
 
   render() {
+    const { className } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input value={this.state.query} onChange={this.handleChange} />
-        <button>Search</button>
+      <form className={cn(className)} onSubmit={this.handleSubmit}>
+        <Input className="mb-3" value={this.state.query} onChange={this.handleChange} />
+        <Button>Search</Button>
       </form>
     );
   }
