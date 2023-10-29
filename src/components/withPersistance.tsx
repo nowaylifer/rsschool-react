@@ -1,4 +1,5 @@
 import { ComponentClass } from 'react';
+import { serializeError } from 'serialize-error';
 
 function withPersistance<P extends object, S>(
   WrappedComponent: ComponentClass<P, S>,
@@ -23,7 +24,8 @@ function withPersistance<P extends object, S>(
       const handler: ProxyHandler<(...args: unknown[]) => unknown> = {
         apply: (...args) => {
           const stateToPersist = stateFields?.reduce<Partial<S>>((acc, field) => {
-            Object.assign(acc, { [field]: this.state[field] });
+            const value = this.state[field];
+            Object.assign(acc, { [field]: value instanceof Error ? serializeError(value) : value });
             return acc;
           }, {} as Partial<S>);
 
@@ -31,6 +33,7 @@ function withPersistance<P extends object, S>(
             componentName,
             JSON.stringify(stateFields ? stateToPersist : this.state)
           );
+
           return Reflect.apply(...args);
         },
       };

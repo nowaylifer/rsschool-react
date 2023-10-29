@@ -13,7 +13,7 @@ interface State {
   inputValue: string;
 }
 
-class Search extends Component<Props, State> {
+class SearchForm extends Component<Props, State> {
   state: State = {
     query: '',
     inputValue: '',
@@ -53,4 +53,4 @@ class Search extends Component<Props, State> {
   }
 }
 
-export default withPersistance(Search, ['query']);
+export default withPersistance(SearchForm, ['query']);

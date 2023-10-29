@@ -20,4 +20,12 @@ const search = async (query: string, type: QueryType | QueryType[] = 'album') =>
   return response.data;
 };
 
-export default { search };
+const fetchNewReleases = async () => {
+  const response = await axiosSpotify.get('/browse/new-releases', {
+    params: { country: 'US', limit: 20 },
+  });
+
+  return response.data;
+};
+
+export default { search, fetchNewReleases };
