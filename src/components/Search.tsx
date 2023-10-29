@@ -4,17 +4,17 @@ import Button from './Button';
 import withPersistance from './withPersistance';
 import { cn } from '../utils';
 
-interface SearchProps extends ComponentProps<'div'> {
+interface Props extends ComponentProps<'div'> {
   onSearch: (query: string) => void;
 }
 
-interface SearchState {
+interface State {
   query: string;
   inputValue: string;
 }
 
-class Search extends Component<SearchProps, SearchState> {
-  state: SearchState = {
+class Search extends Component<Props, State> {
+  state: State = {
     query: '',
     inputValue: '',
   };
@@ -53,4 +53,4 @@ class Search extends Component<SearchProps, SearchState> {
   }
 }
 
-export default withPersistance(Search, 'query');
+export default withPersistance(Search, ['query']);

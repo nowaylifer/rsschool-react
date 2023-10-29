@@ -6,23 +6,34 @@ import Card from './components/Card';
 import Grid from './components/Grid';
 import type { Album } from './interfaces';
 import withPersistance from './components/withPersistance';
+import ModalLoading from './components/ModalLoading';
 
 interface AppState {
   albums: Album[];
+  isLoading: boolean;
 }
 
 class App extends Component<PropsWithChildren, AppState> {
   state: AppState = {
     albums: [],
+    isLoading: false,
   };
 
   searchCountry = async (query: string) => {
-    const result = await countriesService.search(query);
-    this.setState({ albums: result.albums.items });
+    this.setState({ isLoading: true });
+
+    try {
+      const result = await countriesService.search(query);
+      this.setState({ albums: result.albums.items });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.setState({ isLoading: false });
+    }
   };
 
   render() {
-    const { albums } = this.state;
+    const { albums, isLoading } = this.state;
 
     const albumsSortedByYear = albums
       .map((album): Album & { releaseYear: number } => ({
@@ -33,6 +44,7 @@ class App extends Component<PropsWithChildren, AppState> {
 
     return (
       <div className="container mx-auto px-4">
+        {isLoading && <ModalLoading />}
         <Header />
         <Search className="mb-10" onSearch={this.searchCountry} />
         <Grid>
@@ -59,4 +71,4 @@ class App extends Component<PropsWithChildren, AppState> {
   }
 }
 
-export default withPersistance(App);
+export default withPersistance(App, ['albums']);

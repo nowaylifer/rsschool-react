@@ -13,7 +13,22 @@ export default {
         '2xl': '1400px',
       },
     },
-    extend: {},
+    extend: {
+      animation: {
+        fadeIn: 'fadeIn 0.15s ease-in-out forwards',
+        fadeOut: 'fadeOut 0.15s ease forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+      },
+    },
   },
   plugins: [],
 };

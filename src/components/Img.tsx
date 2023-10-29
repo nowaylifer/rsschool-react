@@ -2,20 +2,20 @@ import { Component, ComponentProps } from 'react';
 import { promiseTimeout } from '../utils';
 import { cn } from '../utils';
 
-interface ImgProps extends ComponentProps<'img'> {
+interface Props extends ComponentProps<'img'> {
   src: string;
   placeholderSrc?: string;
   width: number;
   height: number;
 }
 
-interface ImgState {
+interface State {
   imgSrc: string;
   loading: boolean;
 }
 
-export class Img extends Component<ImgProps, ImgState> {
-  state: ImgState = {
+export class Img extends Component<Props, State> {
+  state: State = {
     imgSrc: this.props.src,
     loading: false,
   };

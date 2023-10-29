@@ -1,11 +1,11 @@
 import { Component, ComponentProps, ReactNode } from 'react';
 import { cn } from '../utils';
 
-interface GridProps extends ComponentProps<'div'> {
+interface Props extends ComponentProps<'div'> {
   children: Iterable<ReactNode>;
 }
 
-export class Grid extends Component<GridProps> {
+export class Grid extends Component<Props> {
   render() {
     const { className, children, ...props } = this.props;
     return (

@@ -1,8 +1,8 @@
 import { ComponentClass } from 'react';
 
-function withPersistance<P extends object>(
-  WrappedComponent: ComponentClass<P>,
-  stateField?: string
+function withPersistance<P extends object, S>(
+  WrappedComponent: ComponentClass<P, S>,
+  stateFields?: S extends object ? Array<keyof S> : never
 ) {
   const componentName = WrappedComponent.displayName ?? WrappedComponent.name;
 
@@ -13,8 +13,8 @@ function withPersistance<P extends object>(
       const savedState = JSON.parse(localStorage.getItem(componentName) ?? 'null');
 
       if (savedState) {
-        if (stateField) {
-          Object.assign(this.state, { [stateField]: savedState });
+        if (stateFields) {
+          Object.assign(this.state, savedState);
         } else {
           this.state = savedState;
         }
@@ -22,9 +22,14 @@ function withPersistance<P extends object>(
 
       const handler: ProxyHandler<(...args: unknown[]) => unknown> = {
         apply: (...args) => {
+          const stateToPersist = stateFields?.reduce<Partial<S>>((acc, field) => {
+            Object.assign(acc, { [field]: this.state[field] });
+            return acc;
+          }, {} as Partial<S>);
+
           localStorage.setItem(
             componentName,
-            JSON.stringify(stateField ? this.state[stateField] : this.state)
+            JSON.stringify(stateFields ? stateToPersist : this.state)
           );
           return Reflect.apply(...args);
         },
