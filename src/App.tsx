@@ -5,6 +5,7 @@ import Search from './components/Search';
 import Card from './components/Card';
 import Grid from './components/Grid';
 import type { Album } from './interfaces';
+import withPersistance from './components/withPersistance';
 
 interface AppState {
   albums: Album[];
@@ -18,12 +19,10 @@ class App extends Component<PropsWithChildren, AppState> {
   searchCountry = async (query: string) => {
     const result = await countriesService.search(query);
     this.setState({ albums: result.albums.items });
-    console.log(result.albums.itmes);
   };
 
   render() {
     const { albums } = this.state;
-    console.log(albums);
 
     const albumsSortedByYear = albums
       .map((album): Album & { releaseYear: number } => ({
@@ -60,4 +59,4 @@ class App extends Component<PropsWithChildren, AppState> {
   }
 }
 
-export default App;
+export default withPersistance(App);

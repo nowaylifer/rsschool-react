@@ -12,11 +12,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.tsx?": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "**/*.s?css": "prettier --write"
+    "**/*.{ts,tsx}": "eslint --fix",
+    "**/*.{tsx,ts,css,json,md}": "prettier --write"
   },
   "dependencies": {
     "axios": "^1.5.1",

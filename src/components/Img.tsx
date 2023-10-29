@@ -1,4 +1,5 @@
 import { Component, ComponentProps } from 'react';
+import { promiseTimeout } from '../utils';
 import { cn } from '../utils';
 
 interface ImgProps extends ComponentProps<'img'> {
@@ -10,33 +11,45 @@ interface ImgProps extends ComponentProps<'img'> {
 
 interface ImgState {
   imgSrc: string;
-  isLoading: boolean;
+  loading: boolean;
 }
 
 export class Img extends Component<ImgProps, ImgState> {
-  state = {
-    imgSrc: this.props.placeholderSrc ?? this.props.src,
-    isLoading: !!this.props.placeholderSrc,
+  state: ImgState = {
+    imgSrc: this.props.src,
+    loading: false,
   };
 
-  componentDidMount(): void {
-    if (this.props.placeholderSrc) {
-      const img = new Image();
-      img.src = this.props.src;
-      img.onload = () => this.setState({ imgSrc: this.props.src, isLoading: false });
+  async componentDidMount() {
+    const { src, placeholderSrc } = this.props;
+
+    if (!placeholderSrc) {
+      return;
+    }
+
+    const img = new Image();
+
+    const imgComplete = new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = src;
+    });
+
+    try {
+      await promiseTimeout(10, imgComplete);
+    } catch {
+      this.setState({ imgSrc: placeholderSrc, loading: true });
+      img.onload = () => this.setState({ imgSrc: src, loading: false });
     }
   }
 
   render() {
     const { src: _, placeholderSrc: __, className, ...props } = this.props;
-    const { isLoading, imgSrc } = this.state;
+    const { loading, imgSrc } = this.state;
 
     return (
       <img
-        className={cn(
-          isLoading ? 'blur-md [clip-path:inset(0)]' : 'transition-[filter] duration-300',
-          className
-        )}
+        className={cn(loading ? 'blur-md [clip-path:inset(0)]' : 'transition-[filter]', className)}
         src={imgSrc}
         {...props}
       />

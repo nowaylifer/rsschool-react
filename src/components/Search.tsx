@@ -1,6 +1,7 @@
 import { Component, ComponentProps, FormEvent } from 'react';
 import Input from './Input';
 import Button from './Button';
+import withPersistance from './withPersistance';
 import { cn } from '../utils';
 
 interface SearchProps extends ComponentProps<'div'> {
@@ -9,31 +10,47 @@ interface SearchProps extends ComponentProps<'div'> {
 
 interface SearchState {
   query: string;
+  inputValue: string;
 }
 
 class Search extends Component<SearchProps, SearchState> {
-  state = {
+  state: SearchState = {
     query: '',
+    inputValue: '',
   };
 
-  handleChange = (e: FormEvent<HTMLInputElement>) => {
-    this.setState({ query: e.currentTarget.value });
+  private isFirstRender = true;
+
+  componentDidMount() {
+    this.isFirstRender = false;
+  }
+
+  private handleChange = (e: FormEvent<HTMLInputElement>) => {
+    this.setState({ inputValue: e.currentTarget.value });
   };
 
-  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  private handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.props.onSearch(this.state.query);
+    const { inputValue } = this.state;
+    this.setState({ query: inputValue });
+    this.props.onSearch(inputValue);
   };
 
   render() {
     const { className } = this.props;
+    const { inputValue, query } = this.state;
+
     return (
       <form className={cn(className)} onSubmit={this.handleSubmit}>
-        <Input className="mb-3" value={this.state.query} onChange={this.handleChange} />
+        <Input
+          className="mb-3"
+          value={this.isFirstRender ? query : inputValue}
+          onChange={this.handleChange}
+        />
         <Button>Search</Button>
       </form>
     );
   }
 }
 
-export default Search;
+export default withPersistance(Search, 'query');
