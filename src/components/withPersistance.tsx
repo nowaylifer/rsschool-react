@@ -1,17 +1,19 @@
 import { ComponentClass } from 'react';
 import { serializeError } from 'serialize-error';
+import { STORAGE_PREFIX } from '../constants';
 
 function withPersistance<P extends object, S>(
   WrappedComponent: ComponentClass<P, S>,
   stateFields?: S extends object ? Array<keyof S> : never
 ) {
   const componentName = WrappedComponent.displayName ?? WrappedComponent.name;
+  const key = STORAGE_PREFIX + componentName;
 
   class PersistentComponent extends WrappedComponent {
     constructor(props: P) {
       super(props);
 
-      const savedState = JSON.parse(localStorage.getItem(componentName) ?? 'null');
+      const savedState = JSON.parse(localStorage.getItem(key) ?? 'null');
 
       if (savedState) {
         if (stateFields) {
@@ -29,11 +31,7 @@ function withPersistance<P extends object, S>(
             return acc;
           }, {} as Partial<S>);
 
-          localStorage.setItem(
-            componentName,
-            JSON.stringify(stateFields ? stateToPersist : this.state)
-          );
-
+          localStorage.setItem(key, JSON.stringify(stateFields ? stateToPersist : this.state));
           return Reflect.apply(...args);
         },
       };

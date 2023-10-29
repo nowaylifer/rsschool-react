@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { STORAGE_PREFIX } from '../constants';
 
 const clientID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
-const storageKey = 'MUSIC_SEARCHER_AUTH';
+const storageKey = STORAGE_PREFIX + 'auth';
 
 interface TokenResponse {
   access_token: string;
