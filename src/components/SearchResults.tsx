@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { Album } from '../interfaces';
 import Grid from './Grid';
 import Card from './Card';
-import MagnifyingGlass from '../../public/magnifying-glass.svg?react';
+import MagnifyingGlass from '../assets/icons/magnifying-glass.svg?react';
 
 interface Props {
   albums: Album[];

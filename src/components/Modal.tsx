@@ -46,7 +46,7 @@ export class Modal extends Component<ModalProps, ModalState> {
     );
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     clearTimeout(this.timerId);
   }
 
