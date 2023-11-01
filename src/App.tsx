@@ -1,37 +1,14 @@
-import { Component, PropsWithChildren } from 'react';
-import Header from './components/Header';
-import SearchForm from './components/SearchForm';
-import SearchResults from './components/SearchResults';
-import MusicContainer from './components/MusicContainer';
-import Modal from './components/Modal';
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorFallBackModal from './components/ErrorFallBackModal';
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
 
-class App extends Component<PropsWithChildren> {
-  render() {
-    return (
-      <ErrorBoundary FallbackComponent={ErrorFallBackModal}>
-        <div className="container mx-auto px-4 pb-20">
-          <Header />
-          <MusicContainer>
-            {({ loading, albums, searchMusic, error }) => (
-              <>
-                <SearchForm className="mb-10" onSearch={searchMusic} />
-                <SearchResults albums={albums} error={error} />
-                {loading && (
-                  <Modal>
-                    <Modal.Backdrop>
-                      <Modal.Spinner />
-                    </Modal.Backdrop>
-                  </Modal>
-                )}
-              </>
-            )}
-          </MusicContainer>
-        </div>
-      </ErrorBoundary>
-    );
-  }
-}
+export const App = () => {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallBackModal}>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  );
+};
 
 export default App;

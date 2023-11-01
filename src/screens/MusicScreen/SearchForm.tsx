@@ -1,16 +1,16 @@
 import { FormEvent, useState } from 'react';
-import Input from './Input';
-import Button from './Button';
-import { cn } from '../utils';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import { cn } from '../../utils';
 
 interface Props {
   onSearch: (query: string) => void;
+  initialValue?: string;
   className?: string;
 }
 
-const SearchForm = ({ onSearch, className }: Props) => {
-  // const [query, setQuery] = useState('');
-  const [inputValue, setInputValue] = useState('');
+const SearchForm = ({ onSearch, initialValue, className }: Props) => {
+  const [inputValue, setInputValue] = useState(initialValue ?? '');
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
@@ -18,13 +18,18 @@ const SearchForm = ({ onSearch, className }: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setQuery(inputValue);
     onSearch(inputValue);
   };
 
   return (
     <form className={cn(className)} onSubmit={handleSubmit}>
-      <Input className="mb-3" value={inputValue} onChange={handleChange} />
+      <Input
+        className="mb-3"
+        name="search"
+        value={inputValue}
+        onChange={handleChange}
+        placeholder="Search"
+      />
       <Button>Search</Button>
     </form>
   );

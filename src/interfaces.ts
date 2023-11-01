@@ -1,3 +1,10 @@
+export interface SearchResult<T> {
+  items: T[];
+  offset: number;
+  limit: number;
+  total: number;
+}
+
 export interface AlbumRespEntity {
   id: string;
   name: string;

@@ -45,7 +45,10 @@ const LazyImage = ({ src, placeholderSrc, className, ...rest }: Props) => {
 
   return (
     <img
-      className={cn(loading ? 'blur-md [clip-path:inset(0)]' : 'transition-[filter]', className)}
+      className={cn(
+        loading ? 'blur-md [clip-path:inset(0)]' : 'transition-[filter]',
+        className
+      )}
       src={imageSrc}
       {...rest}
     />
