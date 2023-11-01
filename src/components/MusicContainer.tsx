@@ -1,7 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { Album, AlbumRespEntity } from '../interfaces';
 import spotifyApi from '../services/spotifyApi';
-import withPersistance from './withPersistance';
 
 interface CallbackParams {
   searchMusic(query: string): void;
@@ -75,4 +74,4 @@ class MusicContainer extends Component<Props, State> {
   }
 }
 
-export default withPersistance(MusicContainer, ['albums', 'error']);
+export default MusicContainer;

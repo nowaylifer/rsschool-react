@@ -1,26 +1,16 @@
-import { Component, PropsWithChildren } from 'react';
+import { useState } from 'react';
 import Button from './Button';
 
-interface State {
-  isError: boolean;
-}
+const ThrowError = () => {
+  const [isError, setIsError] = useState(false);
 
-export class ThrowError extends Component<PropsWithChildren, State> {
-  state = {
-    isError: false,
-  };
+  if (isError) throw new Error('Test Error');
 
-  render() {
-    if (this.state.isError) throw new Error('Test Error');
-    return (
-      <Button
-        className="bg-red-500 hover:bg-red-600"
-        onClick={() => this.setState({ isError: true })}
-      >
-        Throw error
-      </Button>
-    );
-  }
-}
+  return (
+    <Button className="bg-red-500 hover:bg-red-600" onClick={() => setIsError(true)}>
+      Throw error
+    </Button>
+  );
+};
 
 export default ThrowError;

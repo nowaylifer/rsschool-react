@@ -1,60 +1,44 @@
-import { Component, PropsWithChildren, ReactNode } from 'react';
+import { ComponentProps, ReactNode, useEffect, useRef, useState } from 'react';
 import Spinner from './Spinner';
+import { cn } from '../utils';
 
-class Backdrop extends Component<PropsWithChildren> {
-  render() {
-    return (
-      <div className="fixed inset-0 z-50 flex animate-fadeIn items-center justify-center bg-[rgba(0,0,0,0.5)] transition-opacity">
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const Backdrop = ({ className, ...rest }: ComponentProps<'div'>) => {
+  return (
+    <div
+      className={cn(
+        'fixed inset-0 z-50 flex animate-fadeIn items-center justify-center bg-[rgba(0,0,0,0.5)] transition-opacity',
+        className
+      )}
+      {...rest}
+    ></div>
+  );
+};
 
-class Body extends Component<PropsWithChildren> {
-  render() {
-    return <div className="rounded-md bg-white px-16 py-14 text-center">{this.props.children}</div>;
-  }
-}
+export const Body = ({ className, ...rest }: ComponentProps<'div'>) => {
+  return (
+    <div className={cn('rounded-md bg-white px-16 py-14 text-center', className)} {...rest}></div>
+  );
+};
 
 interface ModalProps {
   delay?: number;
   children: ReactNode;
 }
 
-interface ModalState {
-  showing: boolean;
-}
+const Modal = ({ delay = 25, children }: ModalProps) => {
+  const [showing, setShowing] = useState(false);
+  const timerIdRef = useRef<number>();
 
-export class Modal extends Component<ModalProps, ModalState> {
-  static Backdrop = Backdrop;
-  static Body = Body;
-  static Spinner = Spinner;
+  useEffect(() => {
+    timerIdRef.current = setTimeout(() => setShowing(true), delay);
+    return () => clearTimeout(timerIdRef.current);
+  }, [delay]);
 
-  state: ModalState = {
-    showing: false,
-  };
+  return showing ? children : null;
+};
 
-  private defaultDelay = 25;
-
-  private timerId?: number;
-
-  componentDidMount() {
-    this.timerId = setTimeout(
-      () => this.setState({ showing: true }),
-      this.props.delay ?? this.defaultDelay
-    );
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timerId);
-  }
-
-  render() {
-    if (!this.state.showing) return null;
-
-    return this.props.children;
-  }
-}
+Modal.Backdrop = Backdrop;
+Modal.Spinner = Spinner;
+Modal.Body = Body;
 
 export default Modal;
