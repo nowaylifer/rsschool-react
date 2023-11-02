@@ -1,6 +1,7 @@
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorFallBackModal from './components/ErrorFallBackModal';
 import { RouterProvider } from 'react-router-dom';
+
 import router from './router';
 
 export const App = () => {

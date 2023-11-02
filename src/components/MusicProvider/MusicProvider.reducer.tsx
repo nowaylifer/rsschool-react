@@ -1,15 +1,16 @@
 import { State } from './MusicProvider.types';
-import { Album, SearchResult, AlbumRespEntity } from '../../interfaces';
+import { SearchResult, MusicEntityType } from '../../types';
 
 type Actions =
   | { type: 'START_SEARCH' }
-  | { type: 'RESOLVED'; payload: { albums: SearchResult<AlbumRespEntity> } }
+  | { type: 'RESOLVED'; payload: SearchResult<MusicEntityType> }
   | { type: 'REJECTED'; payload: Error };
 
 export const initialState: State = {
-  albums: null,
+  albums: [],
   status: 'idle',
   error: null,
+  totalItems: 0,
 };
 
 export const reducer = (state: State, action: Actions): State => {
@@ -19,27 +20,14 @@ export const reducer = (state: State, action: Actions): State => {
     }
 
     case 'RESOLVED': {
-      const { albums } = action.payload;
-
-      if (!albums?.total) {
-        return {
-          ...state,
-          status: 'rejected',
-          error: new Error('No result found.\nTry again'),
-        };
-      }
-
-      const albumsSortedByYear = albums.items
-        .map<Album>((album) => ({
-          ...album,
-          releaseYear: new Date(album.release_date).getFullYear(),
-        }))
-        .sort((a, b) => b.releaseYear - a.releaseYear);
+      const { data, total } = action.payload;
 
       return {
         ...state,
-        status: 'resolved',
-        albums: { ...albums, items: albumsSortedByYear },
+        status: total ? 'resolved' : 'rejected',
+        albums: data,
+        totalItems: total,
+        error: total ? null : new Error('No result found.\nTry again'),
       };
     }
 

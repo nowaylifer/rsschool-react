@@ -1,9 +1,10 @@
-import { Album } from '../../interfaces';
 import Grid from '../../components/Grid';
 import Card from '../../components/Card';
+import { SimplifiedAlbum } from '../../types';
+import { apiImageSize } from '../../services/musicApi';
 
 interface Props {
-  items: Album[];
+  items: SimplifiedAlbum[];
 }
 
 const SearchResultView = ({ items }: Props) => {
@@ -12,17 +13,14 @@ const SearchResultView = ({ items }: Props) => {
       {items.map((item) => (
         <Card key={item.id}>
           <Card.Image
-            src={item.images[0].url}
-            placeholderSrc={item.images[2]?.url}
-            width={item.images[0].width}
-            height={item.images[0].height}
+            src={item.cover_big}
+            placeholderSrc={item.cover_small}
+            width={apiImageSize.width}
+            height={apiImageSize.height}
           />
           <Card.Body>
-            <Card.Title>{item.name}</Card.Title>
-            <Card.Description>{item.artists[0].name}</Card.Description>
-            <Card.Description variant="accented">
-              {item.releaseYear.toString()}
-            </Card.Description>
+            <Card.Title>{item.title}</Card.Title>
+            <Card.Description>{item.artist.name}</Card.Description>
           </Card.Body>
         </Card>
       ))}
