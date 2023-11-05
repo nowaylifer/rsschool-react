@@ -41,4 +41,14 @@ Modal.Backdrop = Backdrop;
 Modal.Spinner = Spinner;
 Modal.Body = Body;
 
+export const ModalLoading = () => {
+  return (
+    <Modal>
+      <Modal.Backdrop>
+        <Modal.Spinner />
+      </Modal.Backdrop>
+    </Modal>
+  );
+};
+
 export default Modal;

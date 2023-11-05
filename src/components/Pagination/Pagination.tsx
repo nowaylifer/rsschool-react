@@ -6,7 +6,6 @@ import { getPaginationRange } from './utils';
 
 interface Props {
   getURLForPage(page: number): string;
-  onPageSizeChange?(newSize: number): void;
   page: number;
   pageSize: number;
   totalItems: number;
@@ -40,10 +39,10 @@ const Pagination = ({
         <PageLink to={composePageURL(page - 1)} disabled={page === 1} className="text-gray-700">
           <Arrow />
         </PageLink>
-        {pageRange.map((item, index) => (
+        {pageRange.map((item) => (
           <PageLink
-            key={index}
-            to={typeof item === 'string' ? '' : composePageURL(item as number)}
+            key={Math.random()}
+            to={typeof item === 'string' ? composePageURL(page) : composePageURL(item)}
             active={page === item}
           >
             {item}

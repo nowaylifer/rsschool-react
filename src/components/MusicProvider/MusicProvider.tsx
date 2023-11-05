@@ -6,8 +6,9 @@ import { MusicContext } from './MusicProvider.types';
 import { useQueryParams, NumberParam, StringParam, withDefault } from 'use-query-params';
 import qs from 'qs';
 
-const DEFAULT_PAGE_SIZE = 20;
 const DEFAULT_PAGE = 1;
+const PAGE_SIZES = [20, 30, 40];
+const DEFAULT_PAGE_SIZE = PAGE_SIZES[0];
 
 const MusicProvider = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -48,12 +49,16 @@ const MusicProvider = () => {
     searchMusic();
   }, [queryParams.page, queryParams.pageSize, queryParams.q]);
 
-  const submitSearch = (query: string) => {
+  const submitSearch = useCallback((query: string) => {
     setQueryParams({
       q: query,
       page: DEFAULT_PAGE,
     });
-  };
+  }, []);
+
+  const changePageSize = useCallback((size: number) => {
+    setQueryParams({ page: DEFAULT_PAGE, pageSize: size });
+  }, []);
 
   const getURLForPage = useCallback((page: number) => {
     const currentQueryParams = qs.parse(location.search.slice(1));
@@ -70,11 +75,13 @@ const MusicProvider = () => {
         {
           submitSearch,
           getURLForPage,
+          changePageSize,
           queryParams,
           albums: state.albums,
           error: state.error,
           loading: state.status === 'pending',
           totalItems: state.totalItems,
+          pageSizes: PAGE_SIZES,
         } satisfies MusicContext
       }
     />

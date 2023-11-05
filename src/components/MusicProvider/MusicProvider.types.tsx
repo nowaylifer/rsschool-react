@@ -15,10 +15,12 @@ export interface MusicQueryParams {
 
 export interface MusicContext {
   submitSearch(query: string): void;
+  changePageSize(size: number): void;
   getURLForPage(page: number): string;
   queryParams: MusicQueryParams;
   albums: State['albums'];
   error: State['error'];
   loading: boolean;
   totalItems: number;
+  pageSizes: number[];
 }
