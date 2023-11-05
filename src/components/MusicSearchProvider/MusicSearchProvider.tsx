@@ -1,25 +1,27 @@
-import { useCallback, useEffect, useReducer } from 'react';
-import { Outlet } from 'react-router-dom';
+import {
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useEffect,
+  useReducer,
+  useContext,
+} from 'react';
 import musicApi, { SearchOptions } from '../../services/musicApi';
-import { reducer, initialState } from './MusicProvider.reducer';
-import { MusicContext } from './MusicProvider.types';
+import { reducer, initialState } from './MusicSearchProvider.reducer';
+import type { MusicSearchContext } from './MusicSearchProvider.types';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, PAGE_SIZES } from './MusicSearchProvider.config';
 import { useQueryParams, NumberParam, StringParam, withDefault } from 'use-query-params';
-import qs from 'qs';
+import { getUpdatedQueryString } from '../../utils';
 
-const DEFAULT_PAGE = 1;
-const PAGE_SIZES = [20, 30, 40];
-const DEFAULT_PAGE_SIZE = PAGE_SIZES[0];
+const MusicSearchContext = createContext<MusicSearchContext | null>(null);
 
-const MusicProvider = () => {
+const MusicSearchProvider = (props: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [queryParams, setQueryParams] = useQueryParams(
-    {
-      q: withDefault(StringParam, null),
-      page: withDefault(NumberParam, DEFAULT_PAGE),
-      pageSize: withDefault(NumberParam, DEFAULT_PAGE_SIZE),
-    },
-    { removeDefaultsFromUrl: true }
-  );
+  const [queryParams, setQueryParams] = useQueryParams({
+    q: withDefault(StringParam, null),
+    page: withDefault(NumberParam, DEFAULT_PAGE),
+    pageSize: withDefault(NumberParam, DEFAULT_PAGE_SIZE),
+  });
 
   useEffect(() => {
     if (queryParams.q === null) return;
@@ -36,7 +38,7 @@ const MusicProvider = () => {
 
       try {
         const result = await musicApi.search(queryParams.q!, options);
-        dispatch({ type: 'RESOLVED', payload: result });
+        dispatch({ type: 'SEARCH_RESOLVED', payload: result });
       } catch (error) {
         dispatch({
           type: 'REJECTED',
@@ -61,17 +63,13 @@ const MusicProvider = () => {
   }, []);
 
   const getURLForPage = useCallback((page: number) => {
-    const currentQueryParams = qs.parse(location.search.slice(1));
-    const updatedQueryParams = {
-      ...currentQueryParams,
-      page: page === DEFAULT_PAGE ? undefined : page,
-    };
-    return `?${qs.stringify(updatedQueryParams)}`;
+    const param = { page: page === DEFAULT_PAGE ? undefined : page };
+    return getUpdatedQueryString(param);
   }, []);
 
   return (
-    <Outlet
-      context={
+    <MusicSearchContext.Provider
+      value={
         {
           submitSearch,
           getURLForPage,
@@ -82,10 +80,17 @@ const MusicProvider = () => {
           loading: state.status === 'pending',
           totalItems: state.totalItems,
           pageSizes: PAGE_SIZES,
-        } satisfies MusicContext
+        } satisfies MusicSearchContext
       }
+      {...props}
     />
   );
 };
 
-export default MusicProvider;
+export const useMusicSearch = () => {
+  const contextValue = useContext(MusicSearchContext);
+  if (!contextValue) throw new Error('useMusicSearch must be used inside MusicSearchContext');
+  return contextValue;
+};
+
+export default MusicSearchProvider;

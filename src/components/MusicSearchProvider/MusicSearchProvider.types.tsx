@@ -13,7 +13,7 @@ export interface MusicQueryParams {
   pageSize: number;
 }
 
-export interface MusicContext {
+export interface MusicSearchContext {
   submitSearch(query: string): void;
   changePageSize(size: number): void;
   getURLForPage(page: number): string;

@@ -9,7 +9,7 @@ export function getPaginationRange(
   siblingCount: number,
   gap: string
 ) {
-  const totalPageNumbers = siblingCount + 5;
+  const totalPageNumbers = siblingCount + 7;
 
   if (totalPageNumbers >= totalPageCount) {
     return range(1, totalPageCount);

@@ -1,12 +1,14 @@
+import { ComponentProps } from 'react';
 import SearchForm from './SearchForm';
 import { ModalLoading } from '../../components/Modal';
-import { useMusicContext } from '../../components/MusicProvider';
+import { useMusicSearch } from '../../components/MusicSearchProvider';
 import SearchResultView from './SearchResultView';
 import SearchResultError from './SearchResultError';
 import MusicPagination from './MusicPagination';
-import { ComponentProps } from 'react';
+import { useMusicDetails } from '../../components/MusicDetailsProvider';
 
 const MusicScreen = () => {
+  const { getURLForAlbumDetails } = useMusicDetails();
   const {
     submitSearch,
     changePageSize,
@@ -17,7 +19,7 @@ const MusicScreen = () => {
     queryParams,
     totalItems,
     pageSizes,
-  } = useMusicContext();
+  } = useMusicSearch();
 
   const paginationProps: ComponentProps<typeof MusicPagination> = {
     page: queryParams.page,
@@ -34,7 +36,9 @@ const MusicScreen = () => {
       <SearchForm onSearch={submitSearch} initialValue={queryParams.q ?? ''} className="mb-10" />
       <MusicPagination {...paginationProps} className="mb-10" />
       {error && <SearchResultError error={error} />}
-      {!error && albums && <SearchResultView items={albums} />}
+      {!error && albums && (
+        <SearchResultView items={albums} getURLForItemDetails={getURLForAlbumDetails} />
+      )}
       <MusicPagination {...paginationProps} className="mt-10" />
       {loading && <ModalLoading />}
     </main>

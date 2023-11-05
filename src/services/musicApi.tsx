@@ -19,9 +19,14 @@ const search = async (query: string, { type = 'album', limit, index }: SearchOpt
   return response.data;
 };
 
+const fetchAlbumDetails = async (albumId: number) => {
+  const response = await axiosInstance.get(`album/${albumId}`);
+  return response.data;
+};
+
 export const apiImageSize = {
   width: 500,
   height: 500,
 };
 
-export default { search, apiImageSize };
+export default { search, fetchAlbumDetails };

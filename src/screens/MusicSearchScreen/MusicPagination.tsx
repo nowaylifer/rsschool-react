@@ -1,8 +1,6 @@
-import Pagination from '../../components/Pagination/Pagination';
-import PageSizeSelect from '../../components/Pagination/PageSizeSelect';
+import { ComponentProps, memo } from 'react';
+import { Pagination, PageSizeSelect } from '../../components/Pagination';
 import { cn } from '../../utils';
-import { ComponentProps } from 'react';
-import { memo } from 'react';
 
 interface Props extends ComponentProps<typeof Pagination>, ComponentProps<typeof PageSizeSelect> {}
 
