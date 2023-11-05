@@ -51,7 +51,7 @@ const Pagination = ({
         {pageRange.map((item) => (
           <PageLink
             key={Math.random()}
-            to={typeof item === 'string' ? composePageURL(page) : composePageURL(item)}
+            to={item === gapLabel ? composePageURL(page) : composePageURL(item as number)}
             active={page === item}
           >
             {item}

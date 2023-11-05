@@ -16,7 +16,7 @@ const PageSizeSelect = ({ currentSize, onChange, sizes, className }: Props) => {
   return (
     <select
       className={cn(
-        'border-blue-gray-100 cursor-pointer rounded-full border bg-white px-2 py-2 text-sm font-semibold transition hover:bg-gray-100 focus:outline-none focus:ring',
+        'border-blue-gray-100 cursor-pointer rounded-full border bg-white px-2 py-2 text-sm font-semibold transition focus:outline-none focus:ring [&:not(:focus)]:hover:bg-gray-100',
         className
       )}
       onChange={handleChange}

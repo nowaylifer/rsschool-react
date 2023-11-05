@@ -1,26 +1,42 @@
-export function getPaginationRange(current: number, total: number, delta: number, gap: string) {
-  if (total <= 1) return [1];
+const range = (start: number, end: number) => {
+  const length = end - start + 1;
+  return Array.from({ length }, (_, idx) => idx + start);
+};
 
-  const center = [current] as (number | typeof gap)[];
+export function getPaginationRange(
+  currentPage: number,
+  totalPageCount: number,
+  siblingCount: number,
+  gap: string
+) {
+  const totalPageNumbers = siblingCount + 5;
 
-  for (let i = 1; i <= delta; i++) {
-    center.unshift(current - i);
-    center.push(current + i);
+  if (totalPageNumbers >= totalPageCount) {
+    return range(1, totalPageCount);
   }
 
-  const filteredCenter = center.filter(
-    (page) => typeof page === 'number' && page > 1 && page < total
-  );
+  const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
+  const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPageCount);
 
-  const includeLeftGap = current > 3 + delta;
-  const includeLeftPages = current === 3 + delta;
-  const includeRightGap = current < total - (2 + delta);
-  const includeRightPages = current === total - (2 + delta);
+  const shouldShowLeftDots = leftSiblingIndex > 2;
+  const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2;
 
-  if (includeLeftPages) filteredCenter.unshift(2);
-  if (includeRightPages) filteredCenter.push(total - 1);
-  if (includeLeftGap) filteredCenter.unshift(gap);
-  if (includeRightGap) filteredCenter.push(gap);
+  const firstPageIndex = 1;
+  const lastPageIndex = totalPageCount;
 
-  return [1, ...filteredCenter, total];
+  if (!shouldShowLeftDots && shouldShowRightDots) {
+    const leftItemCount = 3 + 2 * siblingCount;
+    const leftRange = range(1, leftItemCount);
+
+    return [...leftRange, gap, totalPageCount];
+  }
+
+  if (shouldShowLeftDots && !shouldShowRightDots) {
+    const rightItemCount = 3 + 2 * siblingCount;
+    const rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount);
+    return [firstPageIndex, gap, ...rightRange];
+  }
+
+  const middleRange = range(leftSiblingIndex, rightSiblingIndex);
+  return [firstPageIndex, gap, ...middleRange, gap, lastPageIndex];
 }
