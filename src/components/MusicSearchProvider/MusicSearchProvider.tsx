@@ -69,19 +69,17 @@ const MusicSearchProvider = (props: PropsWithChildren) => {
 
   return (
     <MusicSearchContext.Provider
-      value={
-        {
-          submitSearch,
-          getURLForPage,
-          changePageSize,
-          queryParams,
-          albums: state.albums,
-          error: state.error,
-          loading: state.status === 'pending',
-          totalItems: state.totalItems,
-          pageSizes: PAGE_SIZES,
-        } satisfies MusicSearchContext
-      }
+      value={{
+        submitSearch,
+        getURLForPage,
+        changePageSize,
+        queryParams,
+        albums: state.albums,
+        error: state.error,
+        loading: state.status === 'pending',
+        totalItems: state.totalItems,
+        pageSizes: PAGE_SIZES,
+      }}
       {...props}
     />
   );

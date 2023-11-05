@@ -29,4 +29,9 @@ export const apiImageSize = {
   height: 500,
 };
 
+export const apiImageSizeXl = {
+  widht: 1000,
+  height: 1000,
+};
+
 export default { search, fetchAlbumDetails };

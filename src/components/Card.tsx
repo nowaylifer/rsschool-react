@@ -1,10 +1,15 @@
-import { ComponentProps, ComponentPropsWithoutRef } from 'react';
+import { ComponentProps, ComponentPropsWithoutRef, ReactNode } from 'react';
 import { cn } from '../utils';
 import Image from './Image';
 
-const CardImage = (props: ComponentPropsWithoutRef<typeof Image>) => (
-  <div className="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg">
-    <Image {...props} />
+const CardImage = ({ className, ...rest }: ComponentPropsWithoutRef<typeof Image>) => (
+  <div
+    className={cn(
+      'relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg',
+      className
+    )}
+  >
+    <Image {...rest} />
   </div>
 );
 
@@ -27,7 +32,7 @@ export const CardTitle = ({ className, ...rest }: CardTitleProps) => (
 );
 
 interface CardDescriptionProps extends ComponentProps<'p'> {
-  children: string;
+  children: ReactNode;
   variant?: 'accented' | 'normal';
 }
 

@@ -1,18 +1,7 @@
 import { ComponentProps, ReactNode, useEffect, useRef, useState } from 'react';
-import Spinner from './Spinner';
 import { cn } from '../utils';
-
-const Backdrop = ({ className, ...rest }: ComponentProps<'div'>) => {
-  return (
-    <div
-      className={cn(
-        'fixed inset-0 z-50 flex animate-fadeIn items-center justify-center bg-[rgba(0,0,0,0.5)] transition-opacity',
-        className
-      )}
-      {...rest}
-    ></div>
-  );
-};
+import Spinner from './Spinner';
+import Backdrop from './Backdrop';
 
 export const Body = ({ className, ...rest }: ComponentProps<'div'>) => {
   return (
@@ -41,9 +30,9 @@ Modal.Backdrop = Backdrop;
 Modal.Spinner = Spinner;
 Modal.Body = Body;
 
-export const ModalLoading = () => {
+export const ModalLoading = (props: Omit<ComponentProps<typeof Modal>, 'children'>) => {
   return (
-    <Modal>
+    <Modal {...props}>
       <Modal.Backdrop>
         <Modal.Spinner />
       </Modal.Backdrop>

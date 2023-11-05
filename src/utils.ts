@@ -27,3 +27,11 @@ export const getUpdatedQueryString = (newParams: object) => {
   };
   return `?${qs.stringify(updatedQueryParams)}`;
 };
+
+export const toHHMMSS = (seconds: number) => {
+  return new Date(seconds * 1000).toISOString().slice(11, 19);
+};
+
+export const getYear = (date: string) => {
+  return new Date(date).getFullYear();
+};

@@ -4,7 +4,11 @@ import MusicSearchScreen from './screens/MusicSearchScreen';
 import MusicSearchProvider from './components/MusicSearchProvider';
 import { QueryParamProvider } from 'use-query-params';
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
-import { MusicDetailsProvider } from './components/MusicDetailsProvider';
+import MusicDetailsScreen from './screens/MusicDetailsScreen';
+import MusicDetailsProvider from './components/MusicDetailsProvider';
+import withOutlet from './components/hoc/withOutlet';
+
+const MusicSearchScreenWithOutlet = withOutlet(MusicSearchScreen);
 
 const router = createBrowserRouter([
   {
@@ -20,7 +24,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <MusicSearchScreen />,
+        element: <MusicSearchScreenWithOutlet />,
+        children: [
+          {
+            index: true,
+            element: <MusicDetailsScreen />,
+          },
+        ],
       },
     ],
   },
