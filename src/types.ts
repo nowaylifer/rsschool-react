@@ -59,7 +59,7 @@ export interface Album extends SimplifiedAlbum {
   explicit_content_lyrics: number;
   explicit_content_cover: number;
   contributors: string[];
-  tracks: SimplifiedTrack[];
+  tracks: { data: SimplifiedTrack[] };
 }
 
 type SearchResultsMap = {

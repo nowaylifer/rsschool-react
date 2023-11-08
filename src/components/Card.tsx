@@ -50,7 +50,7 @@ export const CardDescription = ({
 const Card = ({ className, ...rest }: ComponentProps<'div'>) => (
   <div
     className={cn(
-      'relative flex cursor-pointer flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg',
+      'relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg',
       className
     )}
     {...rest}

@@ -35,7 +35,6 @@ const MusicDetailsProvider = (props: PropsWithChildren) => {
       const result = await musicApi.fetchAlbumDetails(detailsParam);
       setStatus('resolved');
       setAlbumDetails(result);
-      console.log(result);
     };
 
     fetchDetails();

@@ -3,7 +3,7 @@ import { useMusicDetails } from '../../components/context/MusicDetailsProvider';
 import Backdrop from '../../components/Backdrop';
 import Spinner from '../../components/Spinner';
 import AlbumDetails from './AlbumDetails';
-import Cross from '../../assets/icons/cross.svg?react';
+import CloseButton from './CloseButton';
 
 const MusicDetailsScreen = () => {
   const { albumDetails, unsetDetails, status } = useMusicDetails();
@@ -11,7 +11,7 @@ const MusicDetailsScreen = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (status !== 'resolved') return;
+    if (status === 'idle') return;
 
     const handleBackdropClick = (e: MouseEvent) => {
       if (e.currentTarget !== e.target) return;
@@ -31,16 +31,11 @@ const MusicDetailsScreen = () => {
 
   return (
     <Backdrop ref={backdropRef}>
-      <div className="fixed bottom-0 right-0 top-0 z-20 flex h-full w-[800px] items-center justify-center rounded-md bg-white bg-opacity-60 backdrop-blur-lg backdrop-filter">
-        <button
-          ref={closeButtonRef}
-          className="absolute right-2 top-2 rounded-full border-white ring-gray-100 transition"
-        >
-          <Cross width="30px" height="30px" className="fill-white/70 transition hover:fill-white" />
-        </button>
+      <div className="fixed bottom-0 right-0 top-0 z-20 flex h-full w-[800px] items-center justify-center rounded-md bg-white bg-opacity-60 px-4 backdrop-blur-lg backdrop-filter max-[800px]:w-full sm:px-9">
+        <CloseButton ref={closeButtonRef} className="absolute right-2 top-2" />
         {status === 'loading' && <Spinner />}
         {status === 'resolved' && albumDetails && (
-          <AlbumDetails album={albumDetails} className="min-w-[722px]" />
+          <AlbumDetails album={albumDetails} className="w-full" />
         )}
       </div>
     </Backdrop>
