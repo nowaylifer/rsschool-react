@@ -1,9 +1,9 @@
 import { State } from './MusicSearchProvider.types';
-import { SearchResult, MusicEntityType } from '../../types';
+import { SearchResult } from '../../../types';
 
 type Actions =
   | { type: 'START_SEARCH' }
-  | { type: 'SEARCH_RESOLVED'; payload: SearchResult<MusicEntityType> }
+  | { type: 'SEARCH_RESOLVED'; payload: SearchResult }
   | { type: 'REJECTED'; payload: Error };
 
 export const initialState: State = {
@@ -13,7 +13,7 @@ export const initialState: State = {
   totalItems: 0,
 };
 
-export const reducer = (state: State, action: Actions): State => {
+export function reducer(state: State, action: Actions): State {
   switch (action.type) {
     case 'START_SEARCH': {
       return { ...state, status: 'pending' };
@@ -35,4 +35,4 @@ export const reducer = (state: State, action: Actions): State => {
       return { ...state, status: 'rejected', error: action.payload };
     }
   }
-};
+}

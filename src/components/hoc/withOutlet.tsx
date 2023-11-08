@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { ComponentType, FC } from 'react';
 
-function withOutlet<P extends object>(WrappedComponent: ComponentType<P>) {
+function withOutlet<P extends Record<string, unknown>>(WrappedComponent: ComponentType<P>) {
   const ComponentWithOutlet: FC<P> = (props) => {
     return (
       <>

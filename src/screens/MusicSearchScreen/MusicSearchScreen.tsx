@@ -1,18 +1,18 @@
 import { ComponentProps } from 'react';
 import SearchForm from './SearchForm';
 import { ModalLoading } from '../../components/Modal';
-import { useMusicSearch } from '../../components/MusicSearchProvider';
+import { useMusicSearch } from '../../components/context/MusicSearchProvider';
 import SearchResultView from './SearchResultView';
 import SearchResultError from './SearchResultError';
 import MusicPagination from './MusicPagination';
-import { useMusicDetails } from '../../components/MusicDetailsProvider';
+import { useMusicDetails } from '../../components/context/MusicDetailsProvider';
 
 const MusicScreen = () => {
   const { getURLForAlbumDetails } = useMusicDetails();
   const {
     submitSearch,
     changePageSize,
-    getURLForPage,
+    changePage,
     albums,
     error,
     loading,
@@ -26,7 +26,7 @@ const MusicScreen = () => {
     pageSize: queryParams.pageSize,
     currentSize: queryParams.pageSize,
     totalItems,
-    getURLForPage,
+    onPageChange: changePage,
     sizes: pageSizes,
     onChange: changePageSize,
   };

@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import MusicSearchScreen from './screens/MusicSearchScreen';
-import MusicSearchProvider from './components/MusicSearchProvider';
+import MusicSearchProvider from './components/context/MusicSearchProvider';
 import { QueryParamProvider } from 'use-query-params';
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
 import MusicDetailsScreen from './screens/MusicDetailsScreen';
-import MusicDetailsProvider from './components/MusicDetailsProvider';
+import MusicDetailsProvider from './components/context/MusicDetailsProvider';
 import withOutlet from './components/hoc/withOutlet';
 
 const MusicSearchScreenWithOutlet = withOutlet(MusicSearchScreen);

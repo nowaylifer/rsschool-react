@@ -1,17 +1,12 @@
-import { PropsWithChildren } from 'react';
-import { Link, To } from 'react-router-dom';
+import { ComponentProps } from 'react';
 import { cn } from '../../utils';
 
-interface Props extends PropsWithChildren {
-  to: To;
+interface Props extends ComponentProps<'button'> {
   active?: boolean;
-  disabled?: boolean;
-  className?: string;
 }
 
-const PageLink = ({ to, children, className, disabled = false, active = false }: Props) => (
-  <Link
-    to={to}
+const PageButton = ({ className, disabled = false, active = false, ...rest }: Props) => (
+  <button
     className={cn(
       'border-blue-gray-100 text-blue-gray-500 hover:bg-light-300 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75',
       className,
@@ -20,9 +15,8 @@ const PageLink = ({ to, children, className, disabled = false, active = false }:
         'bg-pink-500 text-white shadow-md hover:bg-pink-500': active,
       }
     )}
-  >
-    {children}
-  </Link>
+    {...rest}
+  />
 );
 
-export default PageLink;
+export default PageButton;

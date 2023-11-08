@@ -81,4 +81,4 @@ type ResponsePageMap = {
   >;
 };
 
-export type SearchResult<T extends MusicEntityType> = Pick<ResponsePageMap, T>[T];
+export type SearchResult<T extends MusicEntityType = MusicEntityType> = ResponsePageMap[T];

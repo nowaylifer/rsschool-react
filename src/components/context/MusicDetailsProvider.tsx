@@ -7,9 +7,9 @@ import {
   useContext,
   useState,
 } from 'react';
-import musicApi from '../services/musicApi';
-import { getUpdatedQueryString } from '../utils';
-import { Album } from '../types';
+import musicApi from '../../services/musicApi';
+import { getUpdatedQueryString } from '../../utils';
+import { Album } from '../../types';
 
 type DetailsStatus = 'idle' | 'loading' | 'resolved' | 'rejected';
 

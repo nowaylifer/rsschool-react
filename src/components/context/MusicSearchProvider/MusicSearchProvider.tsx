@@ -6,38 +6,44 @@ import {
   useReducer,
   useContext,
 } from 'react';
-import musicApi, { SearchOptions } from '../../services/musicApi';
+import musicApi, { SearchOptions } from '../../../services/musicApi';
 import { reducer, initialState } from './MusicSearchProvider.reducer';
 import type { MusicSearchContext } from './MusicSearchProvider.types';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, PAGE_SIZES } from './MusicSearchProvider.config';
 import { useQueryParams, NumberParam, StringParam, withDefault } from 'use-query-params';
-import { getUpdatedQueryString } from '../../utils';
 
 const MusicSearchContext = createContext<MusicSearchContext | null>(null);
 
 const MusicSearchProvider = (props: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [queryParams, setQueryParams] = useQueryParams({
-    q: withDefault(StringParam, null),
+    q: withDefault(StringParam, ''),
     page: withDefault(NumberParam, DEFAULT_PAGE),
     pageSize: withDefault(NumberParam, DEFAULT_PAGE_SIZE),
   });
 
   useEffect(() => {
-    if (queryParams.q === null) return;
-
     const searchMusic = async () => {
       dispatch({ type: 'START_SEARCH' });
 
-      const { pageSize, page } = queryParams;
+      const { pageSize, page, q } = queryParams;
 
-      const options: SearchOptions = {
+      const options: SearchOptions<'album'> = {
+        type: 'album',
         limit: pageSize,
         index: (page - 1) * pageSize,
       };
 
       try {
-        const result = await musicApi.search(queryParams.q!, options);
+        const query = q.trim();
+        let result;
+
+        if (query) {
+          result = await musicApi.search(query, options);
+        } else {
+          result = await musicApi.fetchEditorialReleases(options);
+        }
+
         dispatch({ type: 'SEARCH_RESOLVED', payload: result });
       } catch (error) {
         dispatch({
@@ -62,16 +68,15 @@ const MusicSearchProvider = (props: PropsWithChildren) => {
     setQueryParams({ page: DEFAULT_PAGE, pageSize: size });
   }, []);
 
-  const getURLForPage = useCallback((page: number) => {
-    const param = { page: page === DEFAULT_PAGE ? undefined : page };
-    return getUpdatedQueryString(param);
+  const changePage = useCallback((page: number) => {
+    setQueryParams({ page });
   }, []);
 
   return (
     <MusicSearchContext.Provider
       value={{
         submitSearch,
-        getURLForPage,
+        changePage,
         changePageSize,
         queryParams,
         albums: state.albums,

@@ -1,12 +1,12 @@
 import { memo } from 'react';
-import PageLink from './PageLink';
+import PageButton from './PageButton';
 import { cn } from '../../utils';
 import Arrow from '../../assets/icons/arrow-left.svg?react';
 import { getPaginationRange } from './utils';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
 interface Props {
-  getURLForPage(page: number): string;
+  onPageChange(page: number): void;
   page: number;
   pageSize: number;
   totalItems: number;
@@ -19,7 +19,7 @@ const Pagination = ({
   pageSize,
   page,
   totalItems,
-  getURLForPage,
+  onPageChange,
   siblingCount = 2,
   className,
   gapLabel = '...',
@@ -29,7 +29,7 @@ const Pagination = ({
 
   const totalPages = Math.ceil(totalItems / pageSize);
 
-  if (totalPages <= 2) return null;
+  // if (totalPages < 2) return null;
 
   const pageRange = getPaginationRange(
     page,
@@ -38,28 +38,28 @@ const Pagination = ({
     gapLabel
   );
 
-  const composePageURL = (toPage: number) => {
-    return toPage >= 1 && toPage <= totalPages ? getURLForPage(toPage) : '';
-  };
-
   return (
     <nav className={cn(className)}>
       <ul className="flex justify-center">
-        <PageLink to={composePageURL(page - 1)} disabled={page === 1} className="text-gray-700">
+        <PageButton
+          onClick={() => onPageChange(page - 1)}
+          disabled={page === 1}
+          className="text-gray-700"
+        >
           <Arrow />
-        </PageLink>
+        </PageButton>
         {pageRange.map((item) => (
-          <PageLink
+          <PageButton
             key={Math.random()}
-            to={item === gapLabel ? composePageURL(page) : composePageURL(item as number)}
+            onClick={item === gapLabel ? () => null : () => onPageChange(item as number)}
             active={page === item}
           >
             {item}
-          </PageLink>
+          </PageButton>
         ))}
-        <PageLink to={composePageURL(page + 1)} disabled={page === totalPages}>
+        <PageButton onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>
           <Arrow className="rotate-180" />
-        </PageLink>
+        </PageButton>
       </ul>
     </nav>
   );

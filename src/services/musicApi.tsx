@@ -5,19 +5,33 @@ const axiosInstance = axios.create({
   baseURL: `https://corsproxy.io/?https://api.deezer.com/`,
 });
 
-export interface SearchOptions {
-  type?: MusicEntityType;
+export interface SearchOptions<T extends MusicEntityType> extends PaginationOptions {
+  type: T;
+}
+
+export interface PaginationOptions {
   limit?: number;
   index?: number;
 }
 
-const search = async (query: string, { type = 'album', limit, index }: SearchOptions = {}) => {
-  const response = await axiosInstance.get<SearchResult<typeof type>>(`/search/${type}`, {
-    params: { q: query.trim(), limit, index },
+async function search<T extends MusicEntityType>(
+  query: string,
+  { type, limit, index }: SearchOptions<T>
+) {
+  const response = await axiosInstance.get<SearchResult<T>>(`/search/${type}`, {
+    params: { q: query, limit, index },
   });
 
   return response.data;
-};
+}
+
+async function fetchEditorialReleases({ limit, index }: PaginationOptions) {
+  const response = await axiosInstance.get<SearchResult<'album'>>(`editorial/0/releases`, {
+    params: { limit, index },
+  });
+
+  return response.data;
+}
 
 const fetchAlbumDetails = async (albumId: number) => {
   const response = await axiosInstance.get(`album/${albumId}`);
@@ -34,4 +48,4 @@ export const apiImageSizeXl = {
   height: 1000,
 };
 
-export default { search, fetchAlbumDetails };
+export default { search, fetchAlbumDetails, fetchEditorialReleases };
