@@ -29,7 +29,7 @@ const Pagination = ({
 
   const totalPages = Math.ceil(totalItems / pageSize);
 
-  // if (totalPages < 2) return null;
+  if (totalPages < 2) return null;
 
   const pageRange = getPaginationRange(
     page,

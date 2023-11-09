@@ -11,13 +11,12 @@ interface Props extends ComponentProps<'table'> {
 
 const TrackTable = ({ tracks, className }: Props) => {
   return (
-    <Card className={cn(className)}>
+    <Card className={cn('rounded-scrollbar overflow-y-auto', className)}>
       <table className="w-full">
         <thead className="border-slate-150 border-b">
           <tr>
-            <th colSpan={2} className="pb-2 pl-6 text-left text-lg">
-              Track
-            </th>
+            <th></th>
+            <th className="pb-2 text-left text-lg">Track</th>
             <th className="pb-2">
               <Clock />
             </th>

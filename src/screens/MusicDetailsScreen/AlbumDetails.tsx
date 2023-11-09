@@ -13,7 +13,7 @@ const { width, height } = apiImageSize;
 
 const AlbumDetails = ({ album, className }: Props) => {
   return (
-    <div className={cn('flex flex-col justify-center gap-3', className)}>
+    <div className={cn('flex h-full flex-col justify-center gap-3', className)}>
       <Card className="pointer-events-none flex-row items-start">
         <Card.Image
           src={album.cover_big}
@@ -38,7 +38,7 @@ const AlbumDetails = ({ album, className }: Props) => {
           <Card.Description>{getYear(album.release_date)}</Card.Description>
         </div>
       </Card>
-      <TrackTable className="max-h-[550px] overflow-y-auto" tracks={album.tracks.data} />
+      <TrackTable tracks={album.tracks.data} />
     </div>
   );
 };

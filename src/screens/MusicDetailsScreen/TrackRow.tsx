@@ -1,4 +1,5 @@
 import { SimplifiedTrack } from '../../types';
+import { toHHMMSS } from '../../utils';
 
 interface Props {
   track: SimplifiedTrack;
@@ -8,9 +9,9 @@ interface Props {
 const TrackRow = ({ track, orderNum }: Props) => {
   return (
     <tr>
-      <td className="py-2">{orderNum}.</td>
+      <td className="w-8 py-2">{orderNum}.</td>
       <td>{track.title_short}</td>
-      <td>{track.duration}</td>
+      <td>{toHHMMSS(track.duration)}</td>
     </tr>
   );
 };

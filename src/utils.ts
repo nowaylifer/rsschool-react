@@ -29,7 +29,8 @@ export const getUpdatedQueryString = (newParams: object) => {
 };
 
 export const toHHMMSS = (seconds: number) => {
-  return new Date(seconds * 1000).toISOString().slice(11, 19);
+  const range: [number, number] = seconds < 3600 ? [14, 19] : [11, 16];
+  return new Date(seconds * 1000).toISOString().substring(...range);
 };
 
 export const getYear = (date: string) => {
