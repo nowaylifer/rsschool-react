@@ -7,18 +7,18 @@ import SearchResultError from './SearchResultError';
 import MusicPagination from './MusicPagination';
 import { useMusicDetails } from '../../components/context/MusicDetailsProvider';
 
-const MusicScreen = () => {
+const MusicSearchScreen = () => {
   const { getURLForAlbumDetails } = useMusicDetails();
   const {
-    submitSearch,
     changePageSize,
+    submitSearch,
     changePage,
     albums,
     error,
     loading,
-    queryParams,
-    totalItems,
     pageSizes,
+    totalItems,
+    queryParams,
   } = useMusicSearch();
 
   const paginationProps: ComponentProps<typeof MusicPagination> = {
@@ -45,4 +45,4 @@ const MusicScreen = () => {
   );
 };
 
-export default MusicScreen;
+export default MusicSearchScreen;
