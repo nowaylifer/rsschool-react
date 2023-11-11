@@ -1,15 +1,12 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
+import { JestConfigWithTsJest } from 'ts-jest';
 
 const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  globalSetup: '<rootDir>/jest.setup.ts',
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        jsx: 'react-jsx',
-      },
-    },
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  transform: { '^.+\\.tsx?$': 'ts-jest' },
+  moduleNameMapper: {
+    '\\.svg\\?react': '<rootDir>/tests/__mocks__/svg.ts',
   },
 };
 

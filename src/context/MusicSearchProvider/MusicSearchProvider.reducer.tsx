@@ -1,5 +1,5 @@
 import { State } from './MusicSearchProvider.types';
-import { SearchResult } from '../../../types';
+import { SearchResult } from '../../types';
 
 type Actions =
   | { type: 'START_SEARCH' }

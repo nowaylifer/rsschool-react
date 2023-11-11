@@ -7,20 +7,20 @@ import {
   useContext,
   useState,
 } from 'react';
-import musicApi from '../../services/musicApi';
-import { getUpdatedQueryString } from '../../utils';
-import { Album } from '../../types';
+import musicApi from '../services/musicApi';
+import { getUpdatedQueryString } from '../utils';
+import { Album } from '../types';
 
 type DetailsStatus = 'idle' | 'loading' | 'resolved' | 'rejected';
 
-export interface MusicDetailsContext {
+export interface MusicDetailsContextType {
   getURLForAlbumDetails(albumId: number): string;
   unsetDetails(): void;
   albumDetails: Album | null;
   status: DetailsStatus;
 }
 
-const MusicDetailsContext = createContext<MusicDetailsContext | null>(null);
+export const MusicDetailsContext = createContext<MusicDetailsContextType | null>(null);
 
 const MusicDetailsProvider = (props: PropsWithChildren) => {
   const [detailsParam, setDetailsParam] = useQueryParam('details', NumberParam);

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useMusicDetails } from '../../components/context/MusicDetailsProvider';
+import { useMusicDetails } from '../../context/MusicDetailsProvider';
 import Backdrop from '../../components/Backdrop';
 import Spinner from '../../components/Spinner';
 import AlbumDetails from './AlbumDetails';

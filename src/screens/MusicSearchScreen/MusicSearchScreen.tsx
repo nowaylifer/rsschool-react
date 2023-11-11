@@ -1,11 +1,11 @@
 import { ComponentProps } from 'react';
 import SearchForm from './SearchForm';
 import { ModalLoading } from '../../components/Modal';
-import { useMusicSearch } from '../../components/context/MusicSearchProvider';
+import { useMusicSearch } from '../../context/MusicSearchProvider';
+import { useMusicDetails } from '../../context/MusicDetailsProvider';
 import SearchResultView from './SearchResultView';
 import SearchResultError from './SearchResultError';
 import MusicPagination from './MusicPagination';
-import { useMusicDetails } from '../../components/context/MusicDetailsProvider';
 
 const MusicSearchScreen = () => {
   const { getURLForAlbumDetails } = useMusicDetails();

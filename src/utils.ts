@@ -3,7 +3,7 @@ import { clsx, ClassValue } from 'clsx';
 import qs from 'qs';
 
 export const promiseTimeout = <T>(ms: number, promise: Promise<T>) => {
-  let timerID: number;
+  let timerID: NodeJS.Timeout;
 
   const timer = new Promise((_, reject) => {
     timerID = setTimeout(reject, ms);

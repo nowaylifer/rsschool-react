@@ -1,4 +1,4 @@
-import { SimplifiedAlbum } from '../../../types';
+import { SimplifiedAlbum } from '../../types';
 
 export interface State {
   albums: SimplifiedAlbum[];
@@ -13,7 +13,7 @@ export interface MusicQueryParams {
   pageSize: number;
 }
 
-export interface MusicSearchContext {
+export interface MusicSearchContextType {
   submitSearch(query: string): void;
   changePageSize(size: number): void;
   changePage(page: number): void;

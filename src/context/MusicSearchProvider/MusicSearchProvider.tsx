@@ -6,13 +6,13 @@ import {
   useReducer,
   useContext,
 } from 'react';
-import musicApi, { SearchOptions } from '../../../services/musicApi';
+import musicApi, { SearchOptions } from '../../services/musicApi';
 import { reducer, initialState } from './MusicSearchProvider.reducer';
-import type { MusicSearchContext } from './MusicSearchProvider.types';
+import type { MusicSearchContextType } from './MusicSearchProvider.types';
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, PAGE_SIZES } from './MusicSearchProvider.config';
 import { useQueryParams, NumberParam, StringParam, withDefault } from 'use-query-params';
 
-const MusicSearchContext = createContext<MusicSearchContext | null>(null);
+export const MusicSearchContext = createContext<MusicSearchContextType | null>(null);
 
 const MusicSearchProvider = (props: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialState);

@@ -16,7 +16,7 @@ interface ModalProps {
 
 const Modal = ({ delay = 25, children }: ModalProps) => {
   const [showing, setShowing] = useState(false);
-  const timerIdRef = useRef<number>();
+  const timerIdRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     timerIdRef.current = setTimeout(() => setShowing(true), delay);
