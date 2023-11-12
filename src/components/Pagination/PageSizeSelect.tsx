@@ -21,6 +21,7 @@ const PageSizeSelect = ({ currentSize, onChange, sizes, className }: Props) => {
       )}
       onChange={handleChange}
       value={currentSize}
+      aria-label="Select page size"
     >
       {sizes.map((size) => (
         <option key={size} value={size}>

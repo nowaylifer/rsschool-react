@@ -1,5 +1,5 @@
 const Spinner = () => (
-  <div role="status">
+  <div role="status" data-testid="spinner">
     <svg
       aria-hidden="true"
       className="mr-2 inline h-8 w-8 animate-spin fill-gray-600 text-gray-200 dark:fill-gray-300 dark:text-gray-600"

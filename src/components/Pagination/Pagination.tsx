@@ -39,12 +39,13 @@ const Pagination = ({
   );
 
   return (
-    <nav className={cn(className)}>
+    <nav className={cn(className)} data-testid="pagination">
       <ul className="flex justify-center">
         <PageButton
           onClick={() => onPageChange(page - 1)}
           disabled={page === 1}
           className="text-gray-700"
+          aria-label="Previous page"
         >
           <Arrow />
         </PageButton>
@@ -53,11 +54,16 @@ const Pagination = ({
             key={Math.random()}
             onClick={item === gapLabel ? () => null : () => onPageChange(item as number)}
             active={page === item}
+            aria-label={item === gapLabel ? undefined : `Page ${item}`}
           >
             {item}
           </PageButton>
         ))}
-        <PageButton onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>
+        <PageButton
+          onClick={() => onPageChange(page + 1)}
+          disabled={page === totalPages}
+          aria-label="Next page"
+        >
           <Arrow className="rotate-180" />
         </PageButton>
       </ul>

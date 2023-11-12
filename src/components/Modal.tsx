@@ -9,12 +9,12 @@ export const Body = ({ className, ...rest }: ComponentProps<'div'>) => {
   );
 };
 
-interface ModalProps {
+interface ModalProps extends ComponentProps<'div'> {
   delay?: number;
   children: ReactNode;
 }
 
-const Modal = ({ delay = 25, children }: ModalProps) => {
+const Modal = ({ delay = 25, ...rest }: ModalProps) => {
   const [showing, setShowing] = useState(false);
   const timerIdRef = useRef<NodeJS.Timeout>();
 
@@ -23,7 +23,7 @@ const Modal = ({ delay = 25, children }: ModalProps) => {
     return () => clearTimeout(timerIdRef.current);
   }, [delay]);
 
-  return showing ? children : null;
+  return showing ? <div {...rest} /> : null;
 };
 
 Modal.Backdrop = Backdrop;
@@ -32,7 +32,7 @@ Modal.Body = Body;
 
 export const ModalLoading = (props: Omit<ComponentProps<typeof Modal>, 'children'>) => {
   return (
-    <Modal {...props}>
+    <Modal {...props} data-testid="modal-loading">
       <Modal.Backdrop>
         <Modal.Spinner />
       </Modal.Backdrop>

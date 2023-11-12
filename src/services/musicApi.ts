@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { MusicEntityType, SearchResult } from '../types';
+import { API_URL } from '../constants';
 
 const axiosInstance = axios.create({
-  baseURL: `https://corsproxy.io/?https://api.deezer.com/`,
+  baseURL: API_URL,
 });
 
 export interface SearchOptions<T extends MusicEntityType> extends PaginationOptions {
@@ -26,7 +27,7 @@ async function search<T extends MusicEntityType>(
 }
 
 async function fetchEditorialReleases({ limit, index }: PaginationOptions) {
-  const response = await axiosInstance.get<SearchResult<'album'>>(`editorial/0/releases`, {
+  const response = await axiosInstance.get<SearchResult<'album'>>(`/editorial/0/releases`, {
     params: { limit, index },
   });
 

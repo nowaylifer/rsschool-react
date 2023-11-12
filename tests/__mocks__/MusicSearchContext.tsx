@@ -1,5 +1,6 @@
-import searchResult from '../__fixtures__/search-result-of-10-total.json';
+import searchResult from '../__fixtures__/search-results/query-eminem/page-1.page-size-10.json';
 import { MusicSearchContextType } from '../../src/context/MusicSearchProvider';
+import { testSearchQuery } from '../test-utils';
 
 const mockSubmitSearch = jest.fn();
 const mockChangePage = jest.fn();
@@ -15,7 +16,7 @@ export const mockMusicSearchContextValueSuccess: MusicSearchContextType = {
   error: null,
   loading: false,
   queryParams: {
-    q: 'eminem',
+    q: testSearchQuery,
     pageSize: 10,
     page: 1,
   },

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import MusicSearchScreen from './screens/MusicSearchScreen';
 import MusicSearchProvider from './context/MusicSearchProvider';
@@ -10,7 +10,7 @@ import withOutlet from './components/hoc/withOutlet';
 
 const MusicSearchScreenWithOutlet = withOutlet(MusicSearchScreen);
 
-const router = createBrowserRouter([
+const routerConfig: RouteObject[] = [
   {
     element: (
       <QueryParamProvider adapter={ReactRouter6Adapter} options={{ removeDefaultsFromUrl: true }}>
@@ -34,6 +34,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
 
-export default router;
+export default routerConfig;

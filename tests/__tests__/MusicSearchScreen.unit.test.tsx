@@ -9,6 +9,7 @@ import {
 import MusicSearchScreen from '../../src/screens/MusicSearchScreen';
 import { MusicDetailsContext } from '../../src/context/MusicDetailsProvider';
 import { MusicSearchContext, MusicSearchContextType } from '../../src/context/MusicSearchProvider';
+// import { TEST_API_URL } from '../test-utils';
 
 jest.mock('../../src/hooks/useMediaQuery.ts', () => ({
   __esModule: true,
@@ -39,7 +40,7 @@ describe('MusicSearchScreen', () => {
 
     it('renders cards with specified data', () => {
       expect(screen.getAllByTestId('card')).toHaveLength(
-        mockMusicSearchContextValueSuccess.totalItems
+        mockMusicSearchContextValueSuccess.albums.length
       );
 
       mockMusicSearchContextValueSuccess.albums.forEach((item) => {

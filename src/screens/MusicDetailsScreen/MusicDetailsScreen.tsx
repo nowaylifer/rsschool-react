@@ -30,8 +30,11 @@ const MusicDetailsScreen = () => {
   if (status === 'idle') return null;
 
   return (
-    <Backdrop ref={backdropRef}>
-      <div className="fixed bottom-0 right-0 top-0 z-20 flex h-full w-[800px] items-center justify-center rounded-md bg-white bg-opacity-60 px-4 py-9 backdrop-blur-lg backdrop-filter max-[800px]:w-full sm:px-9">
+    <Backdrop ref={backdropRef} data-testid="details-screen-backdrop">
+      <div
+        className="fixed bottom-0 right-0 top-0 z-20 flex h-full w-[800px] items-center justify-center rounded-md bg-white bg-opacity-60 px-4 py-9 backdrop-blur-lg backdrop-filter max-[800px]:w-full sm:px-9"
+        data-testid="details-screen"
+      >
         <CloseButton ref={closeButtonRef} className="absolute right-2 top-2" />
         {status === 'loading' && <Spinner />}
         {status === 'resolved' && albumDetails && (

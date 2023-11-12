@@ -1,8 +1,9 @@
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import routerConfig from './router';
 import ErrorBoundary from './components/ErrorBoundary';
 import ErrorFallBackModal from './components/ErrorFallBackModal';
-import { RouterProvider } from 'react-router-dom';
 
-import router from './router';
+const router = createBrowserRouter(routerConfig);
 
 export const App = () => {
   return (

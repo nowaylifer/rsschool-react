@@ -1,0 +1,386 @@
+{
+  "data": [
+    {
+      "id": 509492031,
+      "title": "Come Over When You're Sober, Pt. 2 (og version)",
+      "cover": "https://api.deezer.com/album/509492031/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/4786db82fcff1418dd43c53ac585e675/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/4786db82fcff1418dd43c53ac585e675/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/4786db82fcff1418dd43c53ac585e675/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/4786db82fcff1418dd43c53ac585e675/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "4786db82fcff1418dd43c53ac585e675",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/509492031/tracks",
+      "artist": {
+        "id": 11420468,
+        "name": "Lil Peep",
+        "tracklist": "https://api.deezer.com/artist/11420468/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 509564691,
+      "title": "THE FIRST TIME",
+      "cover": "https://api.deezer.com/album/509564691/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/10adb38fa6ded265e61d7c95377e5484/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/10adb38fa6ded265e61d7c95377e5484/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/10adb38fa6ded265e61d7c95377e5484/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/10adb38fa6ded265e61d7c95377e5484/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "10adb38fa6ded265e61d7c95377e5484",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/509564691/tracks",
+      "artist": {
+        "id": 51204222,
+        "name": "The Kid Laroi",
+        "tracklist": "https://api.deezer.com/artist/51204222/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 510153221,
+      "title": "ROCK-STAR",
+      "cover": "https://api.deezer.com/album/510153221/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/3020cc256b8bd705b1b530d01d45f984/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/3020cc256b8bd705b1b530d01d45f984/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/3020cc256b8bd705b1b530d01d45f984/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/3020cc256b8bd705b1b530d01d45f984/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "3020cc256b8bd705b1b530d01d45f984",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/510153221/tracks",
+      "artist": {
+        "id": 13923487,
+        "name": "Stray Kids",
+        "tracklist": "https://api.deezer.com/artist/13923487/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 496691541,
+      "title": "Love or Loved Pt. 2",
+      "cover": "https://api.deezer.com/album/496691541/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/7fca8506fa71cb22884c8b9989a7d282/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/7fca8506fa71cb22884c8b9989a7d282/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/7fca8506fa71cb22884c8b9989a7d282/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/7fca8506fa71cb22884c8b9989a7d282/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "7fca8506fa71cb22884c8b9989a7d282",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/496691541/tracks",
+      "artist": {
+        "id": 132603312,
+        "name": "B.I",
+        "tracklist": "https://api.deezer.com/artist/132603312/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 510894151,
+      "title": "RUSH! (ARE U COMING?)",
+      "cover": "https://api.deezer.com/album/510894151/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/b961e3688b32e04ca1a3c0bd8b56bbd2/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/b961e3688b32e04ca1a3c0bd8b56bbd2/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/b961e3688b32e04ca1a3c0bd8b56bbd2/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/b961e3688b32e04ca1a3c0bd8b56bbd2/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "b961e3688b32e04ca1a3c0bd8b56bbd2",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/510894151/tracks",
+      "artist": {
+        "id": 13612387,
+        "name": "Måneskin",
+        "tracklist": "https://api.deezer.com/artist/13612387/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 504307751,
+      "title": "Montagem - Miscigenar 2.0",
+      "cover": "https://api.deezer.com/album/504307751/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/20b3d299bb005f1047696d167af90352/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/20b3d299bb005f1047696d167af90352/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/20b3d299bb005f1047696d167af90352/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/20b3d299bb005f1047696d167af90352/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "20b3d299bb005f1047696d167af90352",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/504307751/tracks",
+      "artist": {
+        "id": 5061199,
+        "name": "MC GW",
+        "tracklist": "https://api.deezer.com/artist/5061199/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 510914991,
+      "title": "На Титанике",
+      "cover": "https://api.deezer.com/album/510914991/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/72e475b685278a561320da3818fd7e26/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/72e475b685278a561320da3818fd7e26/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/72e475b685278a561320da3818fd7e26/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/72e475b685278a561320da3818fd7e26/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "72e475b685278a561320da3818fd7e26",
+      "release_date": "2023-11-10",
+      "tracklist": "https://api.deezer.com/album/510914991/tracks",
+      "artist": {
+        "id": 66261042,
+        "name": "INSTASAMKA",
+        "tracklist": "https://api.deezer.com/artist/66261042/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 508325091,
+      "title": "Montagem Ímpeto Divino",
+      "cover": "https://api.deezer.com/album/508325091/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/e03e1c4a16292f1146384cc2b698bd9f/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/e03e1c4a16292f1146384cc2b698bd9f/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/e03e1c4a16292f1146384cc2b698bd9f/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/e03e1c4a16292f1146384cc2b698bd9f/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "e03e1c4a16292f1146384cc2b698bd9f",
+      "release_date": "2023-11-09",
+      "tracklist": "https://api.deezer.com/album/508325091/tracks",
+      "artist": {
+        "id": 5061199,
+        "name": "MC GW",
+        "tracklist": "https://api.deezer.com/artist/5061199/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 510072391,
+      "title": "Fez Eu Me Apaixonar",
+      "cover": "https://api.deezer.com/album/510072391/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/916156b3550f67d7b0cf0b984ccb0a88/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/916156b3550f67d7b0cf0b984ccb0a88/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/916156b3550f67d7b0cf0b984ccb0a88/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/916156b3550f67d7b0cf0b984ccb0a88/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "916156b3550f67d7b0cf0b984ccb0a88",
+      "release_date": "2023-11-09",
+      "tracklist": "https://api.deezer.com/album/510072391/tracks",
+      "artist": {
+        "id": 52477472,
+        "name": "Mc Anonimo",
+        "tracklist": "https://api.deezer.com/artist/52477472/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 510575101,
+      "title": "Toma Botada no Útero",
+      "cover": "https://api.deezer.com/album/510575101/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/c875e61ccf51c176cc48e5c3260faf61/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/c875e61ccf51c176cc48e5c3260faf61/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/c875e61ccf51c176cc48e5c3260faf61/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/c875e61ccf51c176cc48e5c3260faf61/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "c875e61ccf51c176cc48e5c3260faf61",
+      "release_date": "2023-11-09",
+      "tracklist": "https://api.deezer.com/album/510575101/tracks",
+      "artist": {
+        "id": 5061199,
+        "name": "MC GW",
+        "tracklist": "https://api.deezer.com/artist/5061199/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 510455261,
+      "title": "Mega Phonk Das Trevas 1.0",
+      "cover": "https://api.deezer.com/album/510455261/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/8c609292f2715f2c45e6e179e88bba5c/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/8c609292f2715f2c45e6e179e88bba5c/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/8c609292f2715f2c45e6e179e88bba5c/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/8c609292f2715f2c45e6e179e88bba5c/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "8c609292f2715f2c45e6e179e88bba5c",
+      "release_date": "2023-11-08",
+      "tracklist": "https://api.deezer.com/album/510455261/tracks",
+      "artist": {
+        "id": 57537572,
+        "name": "Mc MN",
+        "tracklist": "https://api.deezer.com/artist/57537572/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 508732571,
+      "title": "Especial Toma Toma de Final de Ano",
+      "cover": "https://api.deezer.com/album/508732571/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/302cba6ab2b870d1d0578ab2a1d4b3c2/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/302cba6ab2b870d1d0578ab2a1d4b3c2/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/302cba6ab2b870d1d0578ab2a1d4b3c2/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/302cba6ab2b870d1d0578ab2a1d4b3c2/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "302cba6ab2b870d1d0578ab2a1d4b3c2",
+      "release_date": "2023-11-07",
+      "tracklist": "https://api.deezer.com/album/508732571/tracks",
+      "artist": {
+        "id": 5061199,
+        "name": "MC GW",
+        "tracklist": "https://api.deezer.com/artist/5061199/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 509931871,
+      "title": "Socando Igual Terremoto",
+      "cover": "https://api.deezer.com/album/509931871/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/1ca2f496c068394f528198df21415d9c/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/1ca2f496c068394f528198df21415d9c/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/1ca2f496c068394f528198df21415d9c/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/1ca2f496c068394f528198df21415d9c/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "1ca2f496c068394f528198df21415d9c",
+      "release_date": "2023-11-06",
+      "tracklist": "https://api.deezer.com/album/509931871/tracks",
+      "artist": {
+        "id": 75347112,
+        "name": "Mc Panico",
+        "tracklist": "https://api.deezer.com/artist/75347112/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 507437001,
+      "title": "Zunge",
+      "cover": "https://api.deezer.com/album/507437001/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/362c2102eccdb833fbb7b4eaf0eb093d/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/362c2102eccdb833fbb7b4eaf0eb093d/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/362c2102eccdb833fbb7b4eaf0eb093d/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/362c2102eccdb833fbb7b4eaf0eb093d/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "362c2102eccdb833fbb7b4eaf0eb093d",
+      "release_date": "2023-11-04",
+      "tracklist": "https://api.deezer.com/album/507437001/tracks",
+      "artist": {
+        "id": 4403788,
+        "name": "TILL LINDEMANN",
+        "tracklist": "https://api.deezer.com/artist/4403788/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 468652445,
+      "title": "Die About It",
+      "cover": "https://api.deezer.com/album/468652445/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/40e4525fd9e1991199a17db6fa81bc52/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/40e4525fd9e1991199a17db6fa81bc52/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/40e4525fd9e1991199a17db6fa81bc52/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/40e4525fd9e1991199a17db6fa81bc52/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "40e4525fd9e1991199a17db6fa81bc52",
+      "release_date": "2023-11-03",
+      "tracklist": "https://api.deezer.com/album/468652445/tracks",
+      "artist": {
+        "id": 8156852,
+        "name": "Bad Wolves",
+        "tracklist": "https://api.deezer.com/artist/8156852/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 505282901,
+      "title": "Культ",
+      "cover": "https://api.deezer.com/album/505282901/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/7422f0fcd5dd29d5180243c6316a596a/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/7422f0fcd5dd29d5180243c6316a596a/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/7422f0fcd5dd29d5180243c6316a596a/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/7422f0fcd5dd29d5180243c6316a596a/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "7422f0fcd5dd29d5180243c6316a596a",
+      "release_date": "2023-10-27",
+      "tracklist": "https://api.deezer.com/album/505282901/tracks",
+      "artist": {
+        "id": 78654802,
+        "name": "Ауткаст",
+        "tracklist": "https://api.deezer.com/artist/78654802/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 505251241,
+      "title": "AA LANGUAGE 2",
+      "cover": "https://api.deezer.com/album/505251241/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/0a0ba7d3050c3bd7d937df30d30bb868/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/0a0ba7d3050c3bd7d937df30d30bb868/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/0a0ba7d3050c3bd7d937df30d30bb868/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/0a0ba7d3050c3bd7d937df30d30bb868/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "0a0ba7d3050c3bd7d937df30d30bb868",
+      "release_date": "2023-10-27",
+      "tracklist": "https://api.deezer.com/album/505251241/tracks",
+      "artist": {
+        "id": 1582524,
+        "name": "Aarne",
+        "tracklist": "https://api.deezer.com/artist/1582524/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 499125341,
+      "title": "Mooning Around (LTN presents Ghostbeat Remix)",
+      "cover": "https://api.deezer.com/album/499125341/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/5100409460fd41ecc2b8adb172e4c3cb/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/5100409460fd41ecc2b8adb172e4c3cb/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/5100409460fd41ecc2b8adb172e4c3cb/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/5100409460fd41ecc2b8adb172e4c3cb/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "5100409460fd41ecc2b8adb172e4c3cb",
+      "release_date": "2023-10-27",
+      "tracklist": "https://api.deezer.com/album/499125341/tracks",
+      "artist": {
+        "id": 118794062,
+        "name": "Nikol Apatini",
+        "tracklist": "https://api.deezer.com/artist/118794062/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 507793151,
+      "title": "Te Chamei pra Vim pra Minha Base",
+      "cover": "https://api.deezer.com/album/507793151/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/174f9435abd13bdfb22dbaf1bdb11428/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/174f9435abd13bdfb22dbaf1bdb11428/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/174f9435abd13bdfb22dbaf1bdb11428/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/174f9435abd13bdfb22dbaf1bdb11428/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "174f9435abd13bdfb22dbaf1bdb11428",
+      "release_date": "2023-11-07",
+      "tracklist": "https://api.deezer.com/album/507793151/tracks",
+      "artist": {
+        "id": 876469,
+        "name": "Triz",
+        "tracklist": "https://api.deezer.com/artist/876469/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    },
+    {
+      "id": 504234011,
+      "title": "TA GOSTOSIN",
+      "cover": "https://api.deezer.com/album/504234011/image",
+      "cover_small": "https://e-cdns-images.dzcdn.net/images/cover/e5d89d8ee222baecda9ccc38ee3548f6/56x56-000000-80-0-0.jpg",
+      "cover_medium": "https://e-cdns-images.dzcdn.net/images/cover/e5d89d8ee222baecda9ccc38ee3548f6/250x250-000000-80-0-0.jpg",
+      "cover_big": "https://e-cdns-images.dzcdn.net/images/cover/e5d89d8ee222baecda9ccc38ee3548f6/500x500-000000-80-0-0.jpg",
+      "cover_xl": "https://e-cdns-images.dzcdn.net/images/cover/e5d89d8ee222baecda9ccc38ee3548f6/1000x1000-000000-80-0-0.jpg",
+      "md5_image": "e5d89d8ee222baecda9ccc38ee3548f6",
+      "release_date": "2023-11-06",
+      "tracklist": "https://api.deezer.com/album/504234011/tracks",
+      "artist": {
+        "id": 5061199,
+        "name": "MC GW",
+        "tracklist": "https://api.deezer.com/artist/5061199/top?limit=50",
+        "type": "artist"
+      },
+      "type": "album"
+    }
+  ],
+  "total": 40,
+  "next": "https://api.deezer.com/editorial/0/releases?limit=20&index=20"
+}
