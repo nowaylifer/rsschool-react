@@ -1,0 +1,651 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MusicSearchScreen when data is successfully loaded matches snapshot 1`] = `
+<body>
+  <div>
+    <main>
+      <form
+        class="mb-10"
+        role="search"
+      >
+        <label
+          class="sr-only"
+          for="id123"
+        >
+          Search music
+        </label>
+        <input
+          class="w-full appearance-none rounded-md border px-3 py-2 font-medium leading-tight text-gray-700 shadow focus:outline-none focus:ring mb-3"
+          id="id123"
+          name="search"
+          placeholder="Search"
+          value="eminem"
+        />
+        <button
+          class="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring"
+        >
+          Search
+        </button>
+      </form>
+      <div
+        class="flex flex-col items-center justify-center gap-x-2 gap-y-4 md:flex-row mb-10"
+      >
+        <nav
+          class=""
+          data-testid="pagination"
+        >
+          <ul
+            class="flex justify-center"
+          >
+            <button
+              aria-label="Previous page"
+              class="border-blue-gray-100 mx-1 flex h-9 w-9 items-center justify-center rounded-full border p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:delay-75 pointer-events-none bg-gray-50 text-gray-400 focus:outline-none focus:ring-0"
+            >
+              <div />
+            </button>
+            <button
+              aria-label="Page 1"
+              class="border-blue-gray-100 mx-1 flex h-9 w-9 items-center justify-center rounded-full border p-0 text-sm font-semibold transition duration-150 ease-in-out focus:outline-none focus:ring focus:delay-75 bg-pink-500 text-white shadow-md hover:bg-pink-500"
+            >
+              1
+            </button>
+            <button
+              aria-label="Page 2"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              2
+            </button>
+            <button
+              aria-label="Page 3"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              3
+            </button>
+            <button
+              aria-label="Page 4"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              4
+            </button>
+            <button
+              aria-label="Page 5"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              5
+            </button>
+            <button
+              aria-label="Page 6"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              6
+            </button>
+            <button
+              aria-label="Page 7"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              7
+            </button>
+            <button
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              ...
+            </button>
+            <button
+              aria-label="Page 28"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              28
+            </button>
+            <button
+              aria-label="Next page"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              <div
+                class="rotate-180"
+              />
+            </button>
+          </ul>
+        </nav>
+        <select
+          aria-label="Select page size"
+          class="border-blue-gray-100 cursor-pointer rounded-full border bg-white px-2 py-2 text-sm font-semibold transition focus:outline-none focus:ring [&:not(:focus)]:hover:bg-gray-100"
+        >
+          <option
+            value="10"
+          >
+            10 / page
+          </option>
+          <option
+            value="20"
+          >
+            20 / page
+          </option>
+          <option
+            value="30"
+          >
+            30 / page
+          </option>
+        </select>
+      </div>
+      <div
+        class="grid grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] justify-items-center gap-6"
+      >
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/ec3c8ed67427064c70f67e5815b74cef/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  The Eminem Show
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/941c2d3c366affdc662956559e078a4e/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  The Marshall Mathers LP
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/be682506145061814eddee648edb7c59/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  Recovery
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/5026c46b38ed035092df6cfc5a4a288f/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  Encore
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/bf74fc764097630ba58782ae79cfbee6/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  Kamikaze
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/7c71224818ac99b16570357b2f98e041/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  The Marshall Mathers LP2 (Deluxe)
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/cac1e3634d43bdbf0ab03b6f36ecaf7d/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  FEMINEM
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Antifuchs
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/f0b8f9a786d96d8f9fc2a765462c17a6/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  Encore (Deluxe Version)
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/1dbb5a67a722a9defa1d9d23b474cee7/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  Feminem
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Justina Valentine
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="flex max-w-[22rem]"
+        >
+          <a
+            data-testid="card"
+            href="/"
+          >
+            <div
+              class="relative flex flex-col items-center gap-8 rounded-xl bg-white bg-clip-border px-6 py-6 text-gray-700 shadow transition-shadow hover:shadow-lg"
+            >
+              <div
+                class="relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg"
+              >
+                <img
+                  class="transition-[filter]"
+                  height="500"
+                  src="https://e-cdns-images.dzcdn.net/images/cover/55d424a53904d145b17869ba133843d7/500x500-000000-80-0-0.jpg"
+                  width="500"
+                />
+              </div>
+              <div
+                class="text-center"
+              >
+                <h4
+                  class="mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased"
+                >
+                  Music To Be Murdered By - Side B (Deluxe Edition)
+                </h4>
+                <p
+                  class="leading-relax font-medium antialiased text-gray-500"
+                >
+                  Eminem
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center gap-x-2 gap-y-4 md:flex-row mt-10"
+      >
+        <nav
+          class=""
+          data-testid="pagination"
+        >
+          <ul
+            class="flex justify-center"
+          >
+            <button
+              aria-label="Previous page"
+              class="border-blue-gray-100 mx-1 flex h-9 w-9 items-center justify-center rounded-full border p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:delay-75 pointer-events-none bg-gray-50 text-gray-400 focus:outline-none focus:ring-0"
+            >
+              <div />
+            </button>
+            <button
+              aria-label="Page 1"
+              class="border-blue-gray-100 mx-1 flex h-9 w-9 items-center justify-center rounded-full border p-0 text-sm font-semibold transition duration-150 ease-in-out focus:outline-none focus:ring focus:delay-75 bg-pink-500 text-white shadow-md hover:bg-pink-500"
+            >
+              1
+            </button>
+            <button
+              aria-label="Page 2"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              2
+            </button>
+            <button
+              aria-label="Page 3"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              3
+            </button>
+            <button
+              aria-label="Page 4"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              4
+            </button>
+            <button
+              aria-label="Page 5"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              5
+            </button>
+            <button
+              aria-label="Page 6"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              6
+            </button>
+            <button
+              aria-label="Page 7"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              7
+            </button>
+            <button
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              ...
+            </button>
+            <button
+              aria-label="Page 28"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              28
+            </button>
+            <button
+              aria-label="Next page"
+              class="border-blue-gray-100 text-blue-gray-500 mx-1 flex h-9 w-9 items-center justify-center rounded-full border bg-white p-0 text-sm font-semibold transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring focus:delay-75"
+            >
+              <div
+                class="rotate-180"
+              />
+            </button>
+          </ul>
+        </nav>
+        <select
+          aria-label="Select page size"
+          class="border-blue-gray-100 cursor-pointer rounded-full border bg-white px-2 py-2 text-sm font-semibold transition focus:outline-none focus:ring [&:not(:focus)]:hover:bg-gray-100"
+        >
+          <option
+            value="10"
+          >
+            10 / page
+          </option>
+          <option
+            value="20"
+          >
+            20 / page
+          </option>
+          <option
+            value="30"
+          >
+            30 / page
+          </option>
+        </select>
+      </div>
+    </main>
+  </div>
+</body>
+`;
+
+exports[`MusicSearchScreen when there is an error loading data matches snapshot 1`] = `
+<body>
+  <div>
+    <main>
+      <form
+        class="mb-10"
+        role="search"
+      >
+        <label
+          class="sr-only"
+          for="id123"
+        >
+          Search music
+        </label>
+        <input
+          class="w-full appearance-none rounded-md border px-3 py-2 font-medium leading-tight text-gray-700 shadow focus:outline-none focus:ring mb-3"
+          id="id123"
+          name="search"
+          placeholder="Search"
+          value="eminem"
+        />
+        <button
+          class="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring"
+        >
+          Search
+        </button>
+      </form>
+      <div
+        class="flex flex-col items-center justify-center gap-4"
+      >
+        <div
+          class="h-14 fill-slate-500"
+        />
+        <p
+          class="text-xl font-semibold text-slate-600"
+        >
+          No result found
+        </p>
+      </div>
+    </main>
+  </div>
+</body>
+`;
