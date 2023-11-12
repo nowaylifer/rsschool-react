@@ -7,6 +7,7 @@ import { QueryParamProvider } from 'use-query-params';
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
 import MusicDetailsScreen from './screens/MusicDetailsScreen';
 import withOutlet from './components/hoc/withOutlet';
+import NotFoundScreen from './screens/NotFoundScreen';
 
 const MusicSearchScreenWithOutlet = withOutlet(MusicSearchScreen);
 
@@ -33,6 +34,10 @@ const routerConfig: RouteObject[] = [
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundScreen />,
   },
 ];
 

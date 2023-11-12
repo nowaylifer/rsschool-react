@@ -193,4 +193,9 @@ describe('App', () => {
       });
     });
   });
+
+  it('renders not found screen when there is no matching route', () => {
+    renderApp(['/abracadabra']);
+    expect(screen.getByText(/page not found/i));
+  });
 });
