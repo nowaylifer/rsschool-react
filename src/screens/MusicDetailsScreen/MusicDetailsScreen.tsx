@@ -6,13 +6,11 @@ import AlbumDetails from './AlbumDetails';
 import CloseButton from './CloseButton';
 
 const MusicDetailsScreen = () => {
-  const { albumDetails, unsetDetails, status } = useMusicDetails();
+  const { albumDetails, unsetDetails, isFetching } = useMusicDetails();
   const backdropRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (status === 'idle') return;
-
     const handleBackdropClick = (e: MouseEvent) => {
       if (e.currentTarget !== e.target) return;
       unsetDetails();
@@ -25,9 +23,7 @@ const MusicDetailsScreen = () => {
       backdropRef.current?.removeEventListener('click', handleBackdropClick);
       closeButtonRef.current?.removeEventListener('click', unsetDetails);
     };
-  }, [status]);
-
-  if (status === 'idle') return null;
+  }, []);
 
   return (
     <Backdrop ref={backdropRef} data-testid="details-screen-backdrop">
@@ -36,10 +32,8 @@ const MusicDetailsScreen = () => {
         data-testid="details-screen"
       >
         <CloseButton ref={closeButtonRef} className="absolute right-2 top-2" />
-        {status === 'loading' && <Spinner />}
-        {status === 'resolved' && albumDetails && (
-          <AlbumDetails album={albumDetails} className="w-full" />
-        )}
+        {isFetching && <Spinner />}
+        {albumDetails && <AlbumDetails album={albumDetails} className="w-full" />}
       </div>
     </Backdrop>
   );

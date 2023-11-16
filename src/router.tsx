@@ -16,9 +16,7 @@ const routerConfig: RouteObject[] = [
     element: (
       <QueryParamProvider adapter={ReactRouter6Adapter} options={{ removeDefaultsFromUrl: true }}>
         <MusicSearchProvider>
-          <MusicDetailsProvider>
-            <RootLayout />
-          </MusicDetailsProvider>
+          <RootLayout />
         </MusicSearchProvider>
       </QueryParamProvider>
     ),
@@ -28,8 +26,13 @@ const routerConfig: RouteObject[] = [
         element: <MusicSearchScreenWithOutlet />,
         children: [
           {
-            index: true,
-            element: <MusicDetailsScreen />,
+            element: <MusicDetailsProvider />,
+            children: [
+              {
+                index: true,
+                element: <MusicDetailsScreen />,
+              },
+            ],
           },
         ],
       },

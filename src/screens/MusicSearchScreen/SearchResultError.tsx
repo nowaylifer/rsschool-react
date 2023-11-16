@@ -1,7 +1,7 @@
 import MagnifyingGlass from '../../assets/icons/magnifying-glass.svg?react';
 
 interface Props {
-  error: Error;
+  error: { message: string };
 }
 
 const SearchResultError = ({ error }: Props) => (

@@ -3,11 +3,10 @@ import { JestConfigWithTsJest } from 'ts-jest';
 const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  setupFiles: ['<rootDir>/jest.polyfills.ts'],
-  transform: { '^.+\\.tsx?$': 'ts-jest' },
+  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.ts'],
+  setupFiles: ['<rootDir>/tests/jest.polyfills.ts'],
   moduleNameMapper: {
-    '\\.svg\\?react': '<rootDir>/tests/__mocks__/svg.ts',
+    '\\.svg\\?react': '<rootDir>/tests/mocks/svg.ts',
   },
   testEnvironmentOptions: {
     customExportConditions: [''],

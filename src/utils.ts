@@ -1,6 +1,8 @@
-import { twMerge } from 'tailwind-merge';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { clsx, ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import qs from 'qs';
+import { SerializedError } from '@reduxjs/toolkit';
 
 export const promiseTimeout = <T>(ms: number, promise: Promise<T>) => {
   let timerID: NodeJS.Timeout;
@@ -36,3 +38,31 @@ export const toHHMMSS = (seconds: number) => {
 export const getYear = (date: string) => {
   return new Date(date).getFullYear();
 };
+
+export function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
+  return typeof error === 'object' && error != null && 'status' in error;
+}
+
+export function isErrorWithMessage(error: unknown): error is { message: string } {
+  return (
+    typeof error === 'object' &&
+    error != null &&
+    'message' in error &&
+    typeof error.message === 'string'
+  );
+}
+
+export function toPlainError(error: FetchBaseQueryError | SerializedError | undefined) {
+  if (!error) return error;
+
+  if (isFetchBaseQueryError(error)) {
+    const errMsg = 'error' in error ? error.error : JSON.stringify(error.data);
+    return new Error(errMsg);
+  }
+
+  if (isErrorWithMessage(error)) {
+    return error;
+  }
+
+  throw new Error('Unknown error');
+}

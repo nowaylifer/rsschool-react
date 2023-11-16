@@ -1,7 +1,7 @@
 import Grid from '../../components/Grid';
 import Card from '../../components/Card';
 import { SimplifiedAlbum } from '../../types';
-import { apiImageSize } from '../../services/musicApi';
+import { MusicApiImageSize } from '../../constants';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -18,8 +18,8 @@ const SearchResultView = ({ items, getURLForItemDetails }: Props) => {
             <Card.Image
               src={item.cover_big}
               placeholderSrc={item.cover_small}
-              width={apiImageSize.width}
-              height={apiImageSize.height}
+              width={MusicApiImageSize.md.width}
+              height={MusicApiImageSize.md.height}
             />
             <Card.Body>
               <Card.Title>{item.title}</Card.Title>

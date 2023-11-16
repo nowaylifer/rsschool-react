@@ -2,20 +2,19 @@ import { ComponentProps } from 'react';
 import SearchForm from './SearchForm';
 import { ModalLoading } from '../../components/Modal';
 import { useMusicSearch } from '../../context/MusicSearchProvider';
-import { useMusicDetails } from '../../context/MusicDetailsProvider';
 import SearchResultView from './SearchResultView';
 import SearchResultError from './SearchResultError';
 import MusicPagination from './MusicPagination';
 
 const MusicSearchScreen = () => {
-  const { getURLForAlbumDetails } = useMusicDetails();
   const {
+    getURLForAlbumDetails,
     changePageSize,
     submitSearch,
     changePage,
     albums,
     error,
-    loading,
+    isFetching,
     pageSizes,
     totalItems,
     queryParams,
@@ -40,7 +39,7 @@ const MusicSearchScreen = () => {
         <SearchResultView items={albums} getURLForItemDetails={getURLForAlbumDetails} />
       )}
       <MusicPagination {...paginationProps} className="mt-10" />
-      {loading && <ModalLoading />}
+      {isFetching && <ModalLoading />}
     </main>
   );
 };

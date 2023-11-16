@@ -82,3 +82,20 @@ type ResponsePageMap = {
 };
 
 export type SearchResult<T extends MusicEntityType = MusicEntityType> = ResponsePageMap[T];
+
+export type AppSearchParam = (typeof AppSearchParam)[keyof typeof AppSearchParam];
+export const AppSearchParam = {
+  QUERY: 'q',
+  PAGE: 'page',
+  PAGE_SIZE: 'pageSize',
+  DETAILS: 'details',
+} as const;
+
+export interface PaginationOptions {
+  [AppSearchParam.PAGE]: number;
+  [AppSearchParam.PAGE_SIZE]: number;
+}
+
+export interface MusicSearchParams extends PaginationOptions {
+  [AppSearchParam.QUERY]: string;
+}

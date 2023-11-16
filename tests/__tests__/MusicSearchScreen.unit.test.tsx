@@ -1,20 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { mockMusicDetailsContextValue } from '../__mocks__/MusicDetailsContext';
 import {
   mockMusicSearchContextValueError,
   mockMusicSearchContextValueSuccess,
-} from '../__mocks__/MusicSearchContext';
+} from '../mocks/MusicSearchContext';
 import MusicSearchScreen from '../../src/screens/MusicSearchScreen';
-import { MusicDetailsContext } from '../../src/context/MusicDetailsProvider';
-import { MusicSearchContext, MusicSearchContextType } from '../../src/context/MusicSearchProvider';
-// import { TEST_API_URL } from '../test-utils';
-
-jest.mock('../../src/hooks/useMediaQuery.ts', () => ({
-  __esModule: true,
-  default: jest.fn(() => false),
-}));
+import { MusicSearchContext } from '../../src/context/MusicSearchProvider';
 
 jest.mock('react', () => ({
   __esModule: true,
@@ -22,13 +14,11 @@ jest.mock('react', () => ({
   useId: jest.fn(() => 'id123'),
 }));
 
-const customRender = (musicSearchContextValue: MusicSearchContextType) => {
+const customRender = (musicSearchContextValue: MusicSearchContext) => {
   render(
     <MemoryRouter>
       <MusicSearchContext.Provider value={musicSearchContextValue}>
-        <MusicDetailsContext.Provider value={mockMusicDetailsContextValue}>
-          <MusicSearchScreen />
-        </MusicDetailsContext.Provider>
+        <MusicSearchScreen />
       </MusicSearchContext.Provider>
     </MemoryRouter>
   );

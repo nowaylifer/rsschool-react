@@ -1,5 +1,5 @@
 import { Album } from '../../types';
-import { apiImageSize } from '../../services/musicApi';
+import { MusicApiImageSize } from '../../constants';
 import Card from '../../components/Card';
 import { toHHMMSS, getYear, cn } from '../../utils';
 import TrackTable from './TrackTable';
@@ -9,8 +9,6 @@ interface Props {
   className?: string;
 }
 
-const { width, height } = apiImageSize;
-
 const AlbumDetails = ({ album, className }: Props) => {
   return (
     <div className={cn('flex h-full flex-col justify-center gap-3', className)}>
@@ -18,8 +16,8 @@ const AlbumDetails = ({ album, className }: Props) => {
         <Card.Image
           src={album.cover_big}
           placeholderSrc={album.cover_small}
-          width={width}
-          height={height}
+          width={MusicApiImageSize.md.width}
+          height={MusicApiImageSize.md.height}
           className="w-1/3"
         ></Card.Image>
         <div>

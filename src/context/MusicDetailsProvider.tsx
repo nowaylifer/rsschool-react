@@ -1,68 +1,39 @@
 import { useQueryParam, NumberParam } from 'use-query-params';
-import {
-  PropsWithChildren,
-  createContext,
-  useCallback,
-  useEffect,
-  useContext,
-  useState,
-} from 'react';
-import musicApi from '../services/musicApi';
-import { getUpdatedQueryString } from '../utils';
-import { Album } from '../types';
+import { Outlet, useOutletContext } from 'react-router-dom';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { useCallback } from 'react';
+import { Album, AppSearchParam } from '../types';
+import { useAlbumDetailsQuery } from '../redux/musicApi';
 
-type DetailsStatus = 'idle' | 'loading' | 'resolved' | 'rejected';
-
-export interface MusicDetailsContextType {
-  getURLForAlbumDetails(albumId: number): string;
+export interface MusicDetailsContext {
   unsetDetails(): void;
-  albumDetails: Album | null;
-  status: DetailsStatus;
+  albumDetails?: Album;
+  isFetching: boolean;
 }
 
-export const MusicDetailsContext = createContext<MusicDetailsContextType | null>(null);
-
-const MusicDetailsProvider = (props: PropsWithChildren) => {
-  const [detailsParam, setDetailsParam] = useQueryParam('details', NumberParam);
-  const [albumDetails, setAlbumDetails] = useState<Album | null>(null);
-  const [status, setStatus] = useState<DetailsStatus>('idle');
-
-  useEffect(() => {
-    if (!detailsParam) return;
-
-    const fetchDetails = async () => {
-      setStatus('loading');
-      const result = await musicApi.fetchAlbumDetails(detailsParam);
-      setStatus('resolved');
-      setAlbumDetails(result);
-    };
-
-    fetchDetails();
-  }, [detailsParam]);
-
-  const getURLForAlbumDetails = useCallback(
-    (albumId: number) => getUpdatedQueryString({ details: albumId }),
-    []
-  );
+const MusicDetailsProvider = () => {
+  const [detailsParam, setDetailsParam] = useQueryParam(AppSearchParam.DETAILS, NumberParam);
+  const { data, isFetching } = useAlbumDetailsQuery(detailsParam || skipToken);
 
   const unsetDetails = useCallback(() => {
-    setStatus('idle');
-    setAlbumDetails(null);
     setDetailsParam(undefined);
   }, []);
 
-  return (
-    <MusicDetailsContext.Provider
-      value={{ getURLForAlbumDetails, albumDetails, unsetDetails, status }}
-      {...props}
+  return detailsParam ? (
+    <Outlet
+      context={
+        {
+          albumDetails: isFetching ? undefined : data,
+          unsetDetails,
+          isFetching,
+        } satisfies MusicDetailsContext
+      }
     />
-  );
+  ) : null;
 };
 
 export const useMusicDetails = () => {
-  const contextValue = useContext(MusicDetailsContext);
-  if (!contextValue) throw new Error('useMusicDetails must be used inside MusicDetailsContext');
-  return contextValue;
+  return useOutletContext<MusicDetailsContext>();
 };
 
 export default MusicDetailsProvider;
