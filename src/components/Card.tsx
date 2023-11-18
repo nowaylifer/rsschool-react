@@ -24,7 +24,7 @@ interface CardTitleProps extends ComponentProps<'h4'> {
 export const CardTitle = ({ className, ...rest }: CardTitleProps) => (
   <h4
     className={cn(
-      'mb-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased',
+      'mb-2 line-clamp-2 text-lg font-semibold leading-snug tracking-normal text-gray-900 antialiased',
       className
     )}
     {...rest}

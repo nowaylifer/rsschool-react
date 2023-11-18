@@ -30,15 +30,24 @@ const MusicSearchScreen = () => {
     onChange: changePageSize,
   };
 
+  let content: JSX.Element;
+
+  if (error) {
+    content = <SearchResultError error={error} />;
+  } else {
+    content = (
+      <>
+        <MusicPagination {...paginationProps} className="mb-10" />
+        <SearchResultView items={albums} getURLForItemDetails={getURLForAlbumDetails} />
+        <MusicPagination {...paginationProps} className="mt-10" />
+      </>
+    );
+  }
+
   return (
     <main>
       <SearchForm onSearch={submitSearch} initialValue={queryParams.q ?? ''} className="mb-10" />
-      <MusicPagination {...paginationProps} className="mb-10" />
-      {error && <SearchResultError error={error} />}
-      {!error && albums && (
-        <SearchResultView items={albums} getURLForItemDetails={getURLForAlbumDetails} />
-      )}
-      <MusicPagination {...paginationProps} className="mt-10" />
+      {content}
       {isFetching && <ModalLoading />}
     </main>
   );

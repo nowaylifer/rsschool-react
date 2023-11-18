@@ -14,7 +14,7 @@ const SearchResultView = ({ items, getURLForItemDetails }: Props) => {
     <Grid>
       {items.map((item) => (
         <Link to={getURLForItemDetails(item.id)} key={item.id} data-testid="card">
-          <Card>
+          <Card className="h-full">
             <Card.Image
               src={item.cover_big}
               placeholderSrc={item.cover_small}
