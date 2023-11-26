@@ -1,12 +1,11 @@
-import { JestConfigWithTsJest } from 'ts-jest';
-
-const config: JestConfigWithTsJest = {
+const config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.ts'],
   setupFiles: ['<rootDir>/tests/jest.polyfills.ts'],
   moduleNameMapper: {
-    '\\.svg\\?react': '<rootDir>/tests/mocks/svg.ts',
+    '\\.svg': '<rootDir>/tests/mocks/svg.ts',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   testEnvironmentOptions: {
     customExportConditions: [''],

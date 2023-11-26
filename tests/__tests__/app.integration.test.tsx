@@ -8,7 +8,7 @@ import albumDetails from '../fixtures/album-details/id103248.json';
 import userEvent from '@testing-library/user-event';
 import { SearchResult } from '../../src/types';
 import { server } from '../mocks/api/server';
-import { Router } from '@remix-run/router';
+import mockRouter from 'next-router-mock';
 
 const waitForLoader = async () => {
   await waitFor(() => {
@@ -35,18 +35,15 @@ const expectCardsInTheDocument = async (searchResult: SearchResult<'album'>) => 
   });
 };
 
-const expectSearchParamsToMatch = async (router: Router, queryParams: Record<string, string>) => {
-  const searchParams = new URLSearchParams(router.state.location.search);
+const expectSearchParamsToMatch = async (queryParams: Record<string, string>) => {
+  const searchParams = new URLSearchParams(mockRouter.query as Record<string, string>);
   Object.entries(queryParams).forEach(([key, value]) => {
     expect(searchParams.get(key)).toBe(value);
   });
 };
 
-const expectSearchParamsNotToMatch = async (
-  router: Router,
-  queryParams: Record<string, string>
-) => {
-  const searchParams = new URLSearchParams(router.state.location.search);
+const expectSearchParamsNotToMatch = async (queryParams: Record<string, string>) => {
+  const searchParams = new URLSearchParams(mockRouter.query as Record<string, string>);
   Object.entries(queryParams).forEach(([key, value]) => {
     expect(searchParams.get(key)).not.toBe(value);
   });
@@ -64,16 +61,16 @@ describe('App', () => {
   });
 
   it('renders new cards upon submitting new query', async () => {
-    const { router } = renderApp();
+    renderApp();
     await waitForLoader();
     await doSearchQuery(testSearchQuery);
     await waitForLoader();
     await expectCardsInTheDocument(qEminemPage1PageSize20);
-    expectSearchParamsToMatch(router, { q: testSearchQuery });
+    expectSearchParamsToMatch({ q: testSearchQuery });
   });
 
   it('renders working pagination', async () => {
-    const { router } = renderApp({ routerEntries: [`/?q=${testSearchQuery}`] });
+    renderApp(`/?q=${testSearchQuery}`);
     await waitForLoader();
 
     const [topPagination] = await screen.findAllByTestId('pagination');
@@ -87,29 +84,29 @@ describe('App', () => {
     await userEvent.click(withinPagination.getByRole('button', { name: /page 2$/i }));
     await waitForLoader();
     await expectCardsInTheDocument(qEminemPage2PageSize20);
-    expectSearchParamsToMatch(router, { page: '2' });
+    expectSearchParamsToMatch({ page: '2' });
 
     await userEvent.click(withinPagination.getByRole('button', { name: /previous page/i }));
     await expectCardsInTheDocument(qEminemPage1PageSize20);
-    expectSearchParamsNotToMatch(router, { page: '2' });
+    expectSearchParamsNotToMatch({ page: '2' });
 
     await userEvent.click(withinPagination.getByRole('button', { name: /next page/i }));
     await expectCardsInTheDocument(qEminemPage2PageSize20);
-    expectSearchParamsToMatch(router, { page: '2' });
+    expectSearchParamsToMatch({ page: '2' });
   });
 
-  it('renders working page size select', async () => {
-    const { router } = renderApp({ routerEntries: [`/?q=${testSearchQuery}`] });
+  it.only('renders working page size select', async () => {
+    renderApp(`/?q=${testSearchQuery}`);
     await waitForLoader();
     const [topSelect] = await screen.findAllByRole('combobox', { name: /select page size/i });
     await userEvent.selectOptions(topSelect, '40');
     await waitForLoader();
     await expectCardsInTheDocument(qEminemPage1PageSize40);
-    expectSearchParamsToMatch(router, { pageSize: '40' });
+    expectSearchParamsToMatch({ pageSize: '40' });
   });
 
   it('renders album details upon clicking corresponding album card', async () => {
-    const { router } = renderApp({ routerEntries: [`/?q=${testSearchQuery}`] });
+    renderApp(`/?q=${testSearchQuery}`);
     await waitForLoader();
     const [testCard] = screen.getAllByTestId('card');
     await userEvent.click(testCard);
@@ -127,14 +124,12 @@ describe('App', () => {
       expect(within(detailsScreen).getByText(track.title_short)).toBeInTheDocument();
     });
 
-    expectSearchParamsToMatch(router, { details: testDetailsId });
+    expectSearchParamsToMatch({ details: testDetailsId });
   });
 
   describe('details screen can be closed', () => {
     it('by clicking on close button', async () => {
-      const { router } = renderApp({
-        routerEntries: [`/?q=${testSearchQuery}&details=${testDetailsId}`],
-      });
+      renderApp(`/?q=${testSearchQuery}&details=${testDetailsId}`);
 
       await waitForLoader();
       const detailsScreen = await screen.findByTestId('details-screen');
@@ -144,13 +139,11 @@ describe('App', () => {
         expect(detailsScreen).not.toBeInTheDocument();
       });
 
-      expectSearchParamsNotToMatch(router, { details: testDetailsId });
+      expectSearchParamsNotToMatch({ details: testDetailsId });
     });
 
     it('by clicking outside the details screen', async () => {
-      const { router } = renderApp({
-        routerEntries: [`/?q=${testSearchQuery}&details=${testDetailsId}`],
-      });
+      renderApp(`/?q=${testSearchQuery}&details=${testDetailsId}`);
 
       await waitForLoader();
       const detailsScreen = await screen.findByTestId('details-screen');
@@ -161,12 +154,12 @@ describe('App', () => {
         expect(detailsScreen).not.toBeInTheDocument();
       });
 
-      expectSearchParamsNotToMatch(router, { details: testDetailsId });
+      expectSearchParamsNotToMatch({ details: testDetailsId });
     });
   });
 
   it('renders not found screen when there is no matching route', () => {
-    renderApp({ routerEntries: ['/abracadabra'] });
+    renderApp('/abracadabra');
     expect(screen.getByText(/page not found/i));
   });
 });

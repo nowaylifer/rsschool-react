@@ -33,7 +33,13 @@ const MusicDetailsProvider = (props: PropsWithChildren) => {
 };
 
 export const useMusicDetails = () => {
-  return useContext(MusicDetailsContext);
+  const value = useContext(MusicDetailsContext);
+
+  if (!value) {
+    throw new Error('error');
+  }
+
+  return value;
 };
 
 export default MusicDetailsProvider;
