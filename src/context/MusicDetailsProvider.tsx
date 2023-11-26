@@ -1,9 +1,8 @@
 import { useQueryParam, NumberParam } from 'use-query-params';
-import { Outlet, useOutletContext } from 'react-router-dom';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { useCallback } from 'react';
+import { PropsWithChildren, useCallback, createContext, useContext } from 'react';
 import { Album, AppSearchParam } from '../types';
-import { useAlbumDetailsQuery } from '../redux/musicApi';
+import { useAlbumDetailsQuery } from '@/lib/redux/musicApi';
 
 export interface MusicDetailsContext {
   unsetDetails(): void;
@@ -11,7 +10,9 @@ export interface MusicDetailsContext {
   isFetching: boolean;
 }
 
-const MusicDetailsProvider = () => {
+export const MusicDetailsContext = createContext<MusicDetailsContext | null>(null);
+
+const MusicDetailsProvider = (props: PropsWithChildren) => {
   const [detailsParam, setDetailsParam] = useQueryParam(AppSearchParam.DETAILS, NumberParam);
   const { data, isFetching } = useAlbumDetailsQuery(detailsParam || skipToken);
 
@@ -20,20 +21,19 @@ const MusicDetailsProvider = () => {
   }, []);
 
   return detailsParam ? (
-    <Outlet
-      context={
-        {
-          albumDetails: isFetching ? undefined : data,
-          unsetDetails,
-          isFetching,
-        } satisfies MusicDetailsContext
-      }
+    <MusicDetailsContext.Provider
+      value={{
+        albumDetails: isFetching ? undefined : data,
+        unsetDetails,
+        isFetching,
+      }}
+      {...props}
     />
   ) : null;
 };
 
 export const useMusicDetails = () => {
-  return useOutletContext<MusicDetailsContext>();
+  return useContext(MusicDetailsContext);
 };
 
 export default MusicDetailsProvider;

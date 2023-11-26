@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import PageButton from './PageButton';
-import { cn } from '../../utils';
-import Arrow from '../../assets/icons/arrow-left.svg?react';
+import { cn } from '@/lib/utils';
+import Arrow from '@/lib/icons/arrow-left.svg';
 import { getPaginationRange } from './utils';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import useMediaQuery from '@/lib/hooks/useMediaQuery';
 
 interface Props {
   onPageChange(page: number): void;

@@ -1,5 +1,5 @@
 import { ComponentProps, ReactNode } from 'react';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 interface Props extends ComponentProps<'div'> {
   children: Iterable<ReactNode>;

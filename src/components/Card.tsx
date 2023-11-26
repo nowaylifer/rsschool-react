@@ -1,17 +1,41 @@
-import { ComponentProps, ComponentPropsWithoutRef, ReactNode } from 'react';
-import { cn } from '../utils';
-import Image from './Image';
+import { ComponentProps, ComponentPropsWithoutRef, ReactNode, useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
-const CardImage = ({ className, ...rest }: ComponentPropsWithoutRef<typeof Image>) => (
-  <div
-    className={cn(
-      'relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg',
-      className
-    )}
-  >
-    <Image {...rest} />
-  </div>
-);
+interface CardImageProps extends ComponentPropsWithoutRef<typeof Image> {
+  placeholderSrc?: string;
+}
+
+const CardImage = ({ className, alt, placeholderSrc, ...rest }: CardImageProps) => {
+  // const [placeholder, setPlaceholder] = useState<string | undefined>();
+
+  // useEffect(() => {
+  //   const loadPlaceholder = async () => {
+  //     if (placeholderSrc) {
+  //       const base64 = await getBlurData(placeholderSrc);
+  //       setPlaceholder(base64);
+  //     }
+  //   };
+
+  //   loadPlaceholder();
+  // }, []);
+
+  return (
+    <div
+      className={cn(
+        'relative overflow-hidden rounded-xl bg-white bg-clip-border shadow-lg',
+        className
+      )}
+    >
+      <Image
+        // placeholder={placeholder ? 'blur' : 'empty'}
+        // blurDataURL={placeholder}
+        alt={alt}
+        {...rest}
+      />
+    </div>
+  );
+};
 
 const CardBody = ({ className, ...rest }: ComponentProps<'div'>) => {
   return <div className={cn('text-center', className)} {...rest}></div>;

@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { cn } from '../../utils';
+import { cn } from '@/lib/utils';
 
 interface Props extends ComponentProps<'button'> {
   active?: boolean;

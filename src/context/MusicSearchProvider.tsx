@@ -1,10 +1,11 @@
 import { useQueryParams, NumberParam, StringParam, withDefault } from 'use-query-params';
-import { useAlbumSearchQuery, useEditorialReleasesQuery } from '../redux/musicApi';
+import { useAlbumSearchQuery, useEditorialReleasesQuery } from '@/lib/redux/musicApi';
 import { PropsWithChildren, createContext, useCallback, useContext } from 'react';
 import { SimplifiedAlbum, MusicSearchParams, AppSearchParam } from '../types';
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DEFAULT_QUERY, PAGE_SIZES } from '../constants';
-import { getUpdatedQueryString, toPlainError } from '../utils';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DEFAULT_QUERY, PAGE_SIZES } from '@/lib/constants';
+import { getUpdatedQueryString, toPlainError } from '@/lib/utils';
 import { skipToken } from '@reduxjs/toolkit/query';
+import { useRouter } from 'next/router';
 
 export interface MusicSearchContext {
   getURLForAlbumDetails(albumId: number): string;
@@ -28,6 +29,7 @@ const useMusicSearchQuery = (params: MusicSearchParams) => {
 };
 
 const MusicSearchProvider = (props: PropsWithChildren) => {
+  const router = useRouter();
   const [queryParams, setQueryParams] = useQueryParams({
     [AppSearchParam.QUERY]: withDefault(StringParam, DEFAULT_QUERY),
     [AppSearchParam.PAGE]: withDefault(NumberParam, DEFAULT_PAGE),
@@ -52,8 +54,8 @@ const MusicSearchProvider = (props: PropsWithChildren) => {
   }, []);
 
   const getURLForAlbumDetails = useCallback(
-    (albumId: number) => getUpdatedQueryString({ [AppSearchParam.DETAILS]: albumId }),
-    []
+    (albumId: number) => getUpdatedQueryString(router.query, { [AppSearchParam.DETAILS]: albumId }),
+    [router.asPath]
   );
 
   return (

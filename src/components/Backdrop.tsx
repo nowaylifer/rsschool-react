@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef } from 'react';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 const Backdrop = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
   ({ className, ...rest }, ref) => {
@@ -7,7 +7,7 @@ const Backdrop = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
       <div
         ref={ref}
         className={cn(
-          'fixed inset-0 z-10 flex animate-fadeIn items-center justify-center bg-[rgba(0,0,0,0.5)] transition-opacity',
+          'animate-fadeIn fixed inset-0 z-10 flex items-center justify-center bg-[rgba(0,0,0,0.5)] transition-opacity',
           className
         )}
         {...rest}
@@ -15,5 +15,7 @@ const Backdrop = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
     );
   }
 );
+
+Backdrop.displayName = Backdrop.name;
 
 export default Backdrop;

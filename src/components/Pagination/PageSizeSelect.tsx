@@ -1,5 +1,5 @@
 import { ChangeEventHandler, memo } from 'react';
-import { cn } from '../../utils';
+import { cn } from '@/lib/utils';
 
 interface Props {
   onChange(newSize: number): void;

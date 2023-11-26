@@ -1,5 +1,5 @@
 import { ComponentProps, ReactNode, useEffect, useRef, useState } from 'react';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 import Spinner from './Spinner';
 import Backdrop from './Backdrop';
 

@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 export const Header = ({ className, ...rest }: ComponentProps<'header'>) => (
   <header className={cn('flex gap-4', className)} {...rest}></header>
