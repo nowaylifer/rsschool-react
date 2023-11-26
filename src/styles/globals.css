@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @media (hover: hover) {
+    .rounded-scrollbar::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border: 4px solid transparent;
+      border-radius: 8px;
+      background-clip: padding-box;
+    }
+
+    .rounded-scrollbar:hover::-webkit-scrollbar-thumb {
+      background-color: darkgray;
+    }
+
+    .rounded-scrollbar::-webkit-scrollbar {
+      width: 13px;
+    }
+  }
+}
