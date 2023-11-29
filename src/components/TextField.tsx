@@ -1,5 +1,6 @@
 import { useId, forwardRef, ComponentProps } from 'react';
 import { cn } from '../utils';
+import Label from './Label';
 
 type Props = {
   label: string;
@@ -13,9 +14,9 @@ const TextField = forwardRef<HTMLInputElement, Props>(
 
     return (
       <>
-        <label htmlFor={id} className={cn('mb-2 block text-sm font-bold text-gray-700', labelClassName)}>
+        <Label htmlFor={id} className={labelClassName}>
           {label}
-        </label>
+        </Label>
         <input
           ref={ref}
           id={id}
