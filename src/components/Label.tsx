@@ -9,7 +9,7 @@ const Label = <T extends ElementType = 'label'>({ children, className, as, ...re
   const TagName = as ?? 'label';
 
   return (
-    <TagName className={cn('mb-2 block text-sm font-bold text-gray-700', className)} {...rest}>
+    <TagName className={cn('block text-sm font-semibold text-gray-700', className)} {...rest}>
       {children}
     </TagName>
   );

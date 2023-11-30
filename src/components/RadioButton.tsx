@@ -10,8 +10,8 @@ const RadioButton = ({ className, label, ...delegated }: Props) => {
 
   return (
     <div className={cn('mb-4 flex items-center', className)}>
-      <input id={id} type="radio" className="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" {...delegated} />
-      <label htmlFor={id} className="ml-2 block text-sm font-medium text-gray-900">
+      <input id={id} type="radio" className="h-4 w-4 border-gray-300" {...delegated} />
+      <label htmlFor={id} className="ml-2 block text-sm font-medium text-gray-700">
         {label}
       </label>
     </div>
