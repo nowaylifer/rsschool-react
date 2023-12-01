@@ -12,12 +12,13 @@ import {
 import TextField from '../TextField';
 import AutocompleteDropdown, { Option } from './AutocompleteDropdown';
 import { reducer, initializeState, State, Action, InitializerArg } from './Autocomplete.reducer';
+import { cn } from '@/utils';
 
 const DEFAULT_NOT_FOUND = 'No options';
 
-type Props<T, V = Option<T>[]> = {
-  options: V;
-  defaultOption?: keyof V & number; // index of options prop array
+type Props<T> = {
+  options: Option<T>[];
+  defaultOption?: number; // index of options prop array
   showDropdownByDefault?: boolean;
   onChange?: (option: Option<T>) => void;
   notFoundNode?: ReactNode;
@@ -29,6 +30,7 @@ const Autocomplete = <T,>({
   onChange,
   showDropdownByDefault = false,
   notFoundNode = DEFAULT_NOT_FOUND,
+  className,
   ...delegated
 }: Props<T>) => {
   const [state, dispatch] = useReducer<Reducer<State<T>, Action<T>>, InitializerArg<T>>(
@@ -57,7 +59,10 @@ const Autocomplete = <T,>({
   }, []);
 
   const handleBlur = useCallback((e: FocusEvent<HTMLElement>) => {
-    if (e.relatedTarget == null || (e.relatedTarget !== dropDownRef.current && e.relatedTarget !== inputRef.current)) {
+    const isBlurOutside =
+      e.relatedTarget == null || (e.relatedTarget !== dropDownRef.current && e.relatedTarget !== inputRef.current);
+
+    if (isBlurOutside) {
       dispatch({ type: 'BLUR' });
     }
   }, []);
@@ -68,13 +73,14 @@ const Autocomplete = <T,>({
   }, []);
 
   return (
-    <div className="relative" onBlur={handleBlur}>
+    <div className={cn('relative', className)}>
       <TextField
         value={state.inputValue}
         onChange={handleInputChange}
         onFocus={handleFocus}
         ref={inputRef}
         autoComplete="nope"
+        onBlur={handleBlur}
         {...delegated}
       />
       {state.showDropdown && (

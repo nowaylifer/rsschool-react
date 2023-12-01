@@ -4,8 +4,8 @@ import AutocompleteDropdownItem from './AutocompleteDropdownItem';
 
 export type Option<T> = { element?: ReactNode; label: string; value: T };
 
-type Props<T, V = Option<T>[]> = {
-  options: V;
+type Props<T> = {
+  options: Option<T>[];
   selectedOption: Option<T> | null;
   onOptionSelect: (option: Option<T>) => void;
   className?: string;
@@ -28,7 +28,7 @@ const AutocompleteDropdownInner = <T,>(
   return (
     <div
       className={cn('flex max-h-60 w-full flex-col rounded-md border border-gray-300 bg-white', className)}
-      tabIndex={0}
+      tabIndex={-1}
       ref={ref}
     >
       <ul className="h-full overflow-y-auto" ref={listRef}>

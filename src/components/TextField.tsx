@@ -13,7 +13,7 @@ const TextField = forwardRef<HTMLInputElement, Props>(
     const id = useId();
 
     return (
-      <>
+      <div className={cn(className)}>
         <Label htmlFor={id} className={labelClassName}>
           {label}
         </Label>
@@ -21,9 +21,9 @@ const TextField = forwardRef<HTMLInputElement, Props>(
           ref={ref}
           id={id}
           {...delegated}
-          className={cn('mt-1 h-10 w-full rounded border bg-gray-50 px-4', inputClassName ?? className)}
+          className={cn('mt-1 h-10 w-full rounded border bg-gray-50 px-4', inputClassName)}
         />
-      </>
+      </div>
     );
   }
 );
