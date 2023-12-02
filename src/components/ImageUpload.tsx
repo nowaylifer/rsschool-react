@@ -1,13 +1,21 @@
-import { FormEvent, useId } from 'react';
+import { FormEvent, useId, useMemo } from 'react';
 import UploadIcon from '@/assets/icons/upload.svg?react';
 import { cn } from '@/utils';
 
 type Props = {
   className?: string;
   onFileUpload: (file: File) => void;
+  acceptExtensions: string[]; // without dot
+  maxSize: number; // in Mbytes
 };
 
-const ImageUpload = ({ className, onFileUpload }: Props) => {
+const ImageUpload = ({ className, onFileUpload, acceptExtensions, maxSize }: Props) => {
+  const acceptExt = useMemo(() => acceptExtensions.map((ext) => `.${ext}`).join(','), [acceptExtensions]);
+  const imageDesc = useMemo(() => {
+    const extensions = acceptExtensions.map((ext) => ext.toUpperCase()).join(', ');
+    return `${extensions}\n(MAX ${maxSize}MB)`;
+  }, [acceptExtensions, maxSize]);
+
   const id = useId();
 
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
@@ -27,9 +35,9 @@ const ImageUpload = ({ className, onFileUpload }: Props) => {
           <p className="mb-2 text-sm text-gray-500">
             <span className="font-semibold">Upload profile picture</span>
           </p>
-          <p className="text-xs text-gray-500">PNG, JPG (MAX. 1mb)</p>
+          <p className="whitespace-pre-line text-center text-xs text-gray-500">{imageDesc}</p>
         </div>
-        <input id={id} type="file" accept=".jpg,.jpeg,.png" className="hidden" onChange={handleChange} />
+        <input id={id} type="file" accept={acceptExt} className="hidden" onChange={handleChange} />
       </label>
     </div>
   );
