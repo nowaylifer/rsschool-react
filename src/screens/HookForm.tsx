@@ -1,9 +1,9 @@
 import { Controller, useForm, SubmitHandler, SubmitErrorHandler, useFormState } from 'react-hook-form';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { FormFields, PasswordStrength } from '@/types';
 import { useEffect, useState } from 'react';
-import { selectCountryOptions, selectGenderOptions } from '@/redux/formSlice';
-import { cn, formSchema } from '@/utils';
+import { selectCountryOptions, selectGenderOptions, addForm, Form } from '@/redux/formSlice';
+import { cn, formSchema, toBase64 } from '@/utils';
 import ProfilePicture from '../components/ProfilePicture';
 import ImageUpload from '../components/ImageUpload';
 import ValidationErrorMessage from '../components/ValidationErrorMessage';
@@ -17,6 +17,7 @@ import { calcPasswordStrength } from '@/utils';
 import Box from '@/components/Box';
 
 const HookForm = () => {
+  const dispatch = useAppDispatch();
   const {
     register,
     control,
@@ -49,7 +50,14 @@ const HookForm = () => {
   }, [passwordValue]);
 
   const onValidHandler: SubmitHandler<FormFields> = async (data) => {
-    console.log(data);
+    if (data.image) {
+      const imgBase64 = await toBase64(data.image);
+      const form: Form = { ...data, image: imgBase64 };
+      dispatch(addForm(form));
+      return;
+    }
+
+    dispatch(addForm(data));
   };
 
   const onInvalidHandler: SubmitErrorHandler<FormFields> = (error) => {

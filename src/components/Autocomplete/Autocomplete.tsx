@@ -9,6 +9,9 @@ import {
   FocusEvent,
   ComponentProps,
   useEffect,
+  ForwardedRef,
+  forwardRef,
+  useImperativeHandle,
 } from 'react';
 import TextField from '../TextField';
 import AutocompleteDropdown, { Option } from './AutocompleteDropdown';
@@ -39,17 +42,20 @@ type BasicProps<T> = {
 
 type Props<T, TFormFields extends FormFields> = HookProps<T, TFormFields> | BasicProps<T>;
 
-const Autocomplete = <T, TFormFields extends FormFields>({
-  options,
-  defaultOption,
-  register,
-  showDropdownByDefault = false,
-  notFoundNode = DEFAULT_NOT_FOUND,
-  className,
-  name,
-  value,
-  ...delegated
-}: Props<T, TFormFields>) => {
+const AutocompleteInner = <T, TFormFields extends FormFields>(
+  {
+    options,
+    defaultOption,
+    register,
+    showDropdownByDefault = false,
+    notFoundNode = DEFAULT_NOT_FOUND,
+    className,
+    name,
+    value,
+    ...delegated
+  }: Props<T, TFormFields>,
+  ref: ForwardedRef<HTMLInputElement>
+) => {
   const [state, dispatch] = useReducer<Reducer<State<T>, Action<T>>, InitializerArg<T>>(
     reducer,
     {
@@ -60,8 +66,10 @@ const Autocomplete = <T, TFormFields extends FormFields>({
     initializeState
   );
 
+  useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
+
   const registerData = register?.(name);
-  const { onBlur, onChange, ref, ...rest } = registerData ?? {};
+  const { onBlur, onChange, ref: refCallback, ...rest } = registerData ?? {};
 
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -107,7 +115,7 @@ const Autocomplete = <T, TFormFields extends FormFields>({
         onChange={handleInputChange}
         onFocus={handleFocus}
         ref={(input) => {
-          ref?.(input);
+          refCallback?.(input);
           inputRef.current = input;
         }}
         autoComplete="nope"
@@ -128,5 +136,9 @@ const Autocomplete = <T, TFormFields extends FormFields>({
     </div>
   );
 };
+
+const Autocomplete = forwardRef(AutocompleteInner) as <T, TFormFields extends FormFields>(
+  props: Props<T, TFormFields> & { ref?: ForwardedRef<HTMLInputElement> }
+) => ReturnType<typeof AutocompleteInner>;
 
 export default Autocomplete;

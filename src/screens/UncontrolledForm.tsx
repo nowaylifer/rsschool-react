@@ -1,13 +1,13 @@
 import { FormEvent, useCallback, useRef, useState } from 'react';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { ValidationError } from 'yup';
-import { selectCountryOptions, selectGenderOptions } from '@/redux/formSlice';
+import { Form, addForm, selectCountryOptions, selectGenderOptions } from '@/redux/formSlice';
 import TextField from '@/components/TextField';
 import Autocomplete from '@/components/Autocomplete/Autocomplete';
 import ImageUpload from '../components/ImageUpload';
 import ProfilePicture from '../components/ProfilePicture';
 import { IMAGE_EXT, IMAGE_MAX_SIZE } from '@/constants';
-import { formSchema, calcPasswordStrength, cn, getValidationErrors } from '@/utils';
+import { formSchema, calcPasswordStrength, cn, getValidationErrors, toBase64 } from '@/utils';
 import Checkbox from '../components/Checkbox';
 import { FormFields, PasswordStrength } from '@/types';
 import ValidationErrorMessage from '../components/ValidationErrorMessage';
@@ -31,9 +31,14 @@ const initialErrorsState: FormErrors = {
 };
 
 const UncontrolledForm = () => {
+  const dispatch = useAppDispatch();
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState<FormErrors>(initialErrorsState);
   const passwordInputRef = useRef<HTMLInputElement | null>(null);
+  const countryInputRef = useRef<HTMLInputElement | null>(null);
+  const genderInputRef = useRef<HTMLInputElement | null>(null);
+  const ageInputRef = useRef<HTMLInputElement | null>(null);
+  const imageFileRef = useRef<File | null>(null);
   const termsInputRef = useRef<HTMLInputElement | null>(null);
   const countryOptions = useAppSelector(selectCountryOptions);
   const genderOptions = useAppSelector(selectGenderOptions);
@@ -47,6 +52,7 @@ const UncontrolledForm = () => {
 
     try {
       await formSchema.validateAt('image', { image: file });
+      imageFileRef.current = file;
       setImageSrc(URL.createObjectURL(file));
     } catch (error) {
       setValidationErrors((prev) => ({ ...prev, image: (error as ValidationError).message }));
@@ -55,12 +61,27 @@ const UncontrolledForm = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formDataObj = Object.fromEntries(new FormData(event.currentTarget));
-    Object.assign(formDataObj, { terms: termsInputRef.current?.checked });
+    const formDataObj = Object.fromEntries(new FormData(event.currentTarget)) as unknown as FormFields;
+
+    Object.assign(formDataObj, {
+      terms: termsInputRef.current?.checked,
+      gender: genderInputRef.current?.value,
+      country: countryInputRef.current?.value,
+      age: Number(ageInputRef.current?.value),
+      image: imageFileRef.current,
+    });
 
     try {
       await formSchema.validate(formDataObj, { abortEarly: false });
-      alert('Success');
+
+      if (formDataObj.image) {
+        const imgBase64 = await toBase64(formDataObj.image);
+        const form: Form = { ...formDataObj, image: imgBase64 };
+        dispatch(addForm(form));
+        return;
+      }
+
+      dispatch(addForm(formDataObj));
     } catch (error) {
       const errors = getValidationErrors<Exclude<keyof FormFields, 'image'>>(error as ValidationError);
       setValidationErrors(({ image }) => ({ image, ...errors }));
@@ -131,6 +152,7 @@ const UncontrolledForm = () => {
               options={countryOptions}
               placeholder="Choose a country"
               isError={!!validationErrors.country}
+              ref={countryInputRef}
             />
             <ValidationErrorMessage message={validationErrors.country} />
           </div>
@@ -141,11 +163,19 @@ const UncontrolledForm = () => {
               options={genderOptions}
               placeholder="Choose a gender"
               isError={!!validationErrors.gender}
+              ref={genderInputRef}
             />
             <ValidationErrorMessage message={validationErrors.gender} />
           </div>
           <div className="col-span-1">
-            <TextField label="Age" name="age" type="number" min={0} isError={!!validationErrors.age} />
+            <TextField
+              ref={ageInputRef}
+              label="Age"
+              name="age"
+              type="number"
+              min={0}
+              isError={!!validationErrors.age}
+            />
             <ValidationErrorMessage message={validationErrors.age} />
           </div>
           <div className="col-span-6">

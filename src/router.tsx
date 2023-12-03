@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom';
 import Layout from './components/Layout';
 import UncontrolledForm from './screens/UncontrolledForm';
 import HookForm from './screens/HookForm';
+import Main from './screens/Main';
 
 const routerConfig: RouteObject[] = [
   {
@@ -9,7 +10,7 @@ const routerConfig: RouteObject[] = [
     children: [
       {
         index: true,
-        element: null,
+        element: <Main />,
       },
       {
         path: 'uncontrolled-form',
