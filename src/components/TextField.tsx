@@ -6,10 +6,11 @@ type Props = {
   label: string;
   labelClassName?: string;
   inputClassName?: string;
+  isError?: boolean;
 } & ComponentProps<'input'>;
 
 const TextField = forwardRef<HTMLInputElement, Props>(
-  ({ labelClassName, inputClassName, className, label, ...delegated }, ref) => {
+  ({ labelClassName, inputClassName, className, label, isError = false, ...delegated }, ref) => {
     const id = useId();
 
     return (
@@ -21,7 +22,7 @@ const TextField = forwardRef<HTMLInputElement, Props>(
           ref={ref}
           id={id}
           {...delegated}
-          className={cn('mt-1 h-10 w-full rounded border bg-gray-50 px-4', inputClassName)}
+          className={cn('mt-1 h-10 w-full rounded border bg-gray-50 px-4', isError && 'border-red-500', inputClassName)}
         />
       </div>
     );
