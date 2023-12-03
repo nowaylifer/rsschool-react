@@ -1,4 +1,4 @@
-import { Controller, useForm, SubmitHandler, SubmitErrorHandler, useFormState } from 'react-hook-form';
+import { Controller, useForm, SubmitHandler, useFormState } from 'react-hook-form';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { FormFields, PasswordStrength } from '@/types';
 import { useEffect, useState } from 'react';
@@ -11,13 +11,15 @@ import TextField from '../components/TextField';
 import PasswordStrengthBar from '../components/PasswordStrengthBar';
 import Autocomplete from '../components/Autocomplete/Autocomplete';
 import Checkbox from '../components/Checkbox';
-import { IMAGE_EXT, IMAGE_MAX_SIZE } from '@/constants';
+import { IMAGE_EXT, IMAGE_MAX_SIZE, LocationState } from '@/constants';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { calcPasswordStrength } from '@/utils';
 import Box from '@/components/Box';
+import { useNavigate } from 'react-router-dom';
 
 const HookForm = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     control,
@@ -54,19 +56,16 @@ const HookForm = () => {
       const imgBase64 = await toBase64(data.image);
       const form: Form = { ...data, image: imgBase64 };
       dispatch(addForm(form));
-      return;
+    } else {
+      dispatch(addForm(data));
     }
 
-    dispatch(addForm(data));
-  };
-
-  const onInvalidHandler: SubmitErrorHandler<FormFields> = (error) => {
-    console.log(error);
+    navigate('/', { state: LocationState.FORM_ADDED });
   };
 
   return (
     <Box>
-      <form noValidate className="flex gap-x-12" onSubmit={handleSubmit(onValidHandler, onInvalidHandler)}>
+      <form noValidate className="flex gap-x-12" onSubmit={handleSubmit(onValidHandler)}>
         <div className="flex flex-col">
           {imageSrc ? (
             <ProfilePicture imageSrc={imageSrc} />

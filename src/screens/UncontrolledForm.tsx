@@ -6,13 +6,14 @@ import TextField from '@/components/TextField';
 import Autocomplete from '@/components/Autocomplete/Autocomplete';
 import ImageUpload from '../components/ImageUpload';
 import ProfilePicture from '../components/ProfilePicture';
-import { IMAGE_EXT, IMAGE_MAX_SIZE } from '@/constants';
+import { IMAGE_EXT, IMAGE_MAX_SIZE, LocationState } from '@/constants';
 import { formSchema, calcPasswordStrength, cn, getValidationErrors, toBase64 } from '@/utils';
 import Checkbox from '../components/Checkbox';
 import { FormFields, PasswordStrength } from '@/types';
 import ValidationErrorMessage from '../components/ValidationErrorMessage';
 import PasswordStrengthBar from '../components/PasswordStrengthBar';
 import Box from '@/components/Box';
+import { useNavigate } from 'react-router-dom';
 
 type FormErrors = {
   [K in keyof FormFields]?: string;
@@ -44,6 +45,7 @@ const UncontrolledForm = () => {
   const genderOptions = useAppSelector(selectGenderOptions);
   const [isDirty, setIsDirty] = useState(false);
   const [pwdStrength, setPwdStrength] = useState<PasswordStrength>('weak');
+  const navigate = useNavigate();
 
   const onFileUpload = useCallback(async (event: FormEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];
@@ -78,10 +80,11 @@ const UncontrolledForm = () => {
         const imgBase64 = await toBase64(formDataObj.image);
         const form: Form = { ...formDataObj, image: imgBase64 };
         dispatch(addForm(form));
-        return;
+      } else {
+        dispatch(addForm(formDataObj));
       }
 
-      dispatch(addForm(formDataObj));
+      navigate('/', { state: LocationState.FORM_ADDED });
     } catch (error) {
       const errors = getValidationErrors<Exclude<keyof FormFields, 'image'>>(error as ValidationError);
       setValidationErrors(({ image }) => ({ image, ...errors }));

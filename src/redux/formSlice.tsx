@@ -38,12 +38,13 @@ const formSlice = createSlice({
   initialState,
   reducers: {
     addForm(state, action: PayloadAction<Form>) {
-      state.submittedForms.push(action.payload);
+      state.submittedForms.unshift(action.payload);
     },
   },
 });
 
 export const { addForm } = formSlice.actions;
+export const selectSubmittedForms = (state: RootState) => state.form.submittedForms;
 export const selectCountryOptions = (state: RootState) => state.form.countryOptions;
 export const selectGenderOptions = (state: RootState) => state.form.genderOptions;
 

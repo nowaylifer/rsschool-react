@@ -4,8 +4,8 @@ const classCallback = ({ isActive }: { isActive: boolean }) => (isActive ? 'font
 
 const Layout = () => {
   return (
-    <div className="container mx-auto max-w-screen-lg">
-      <div className="mb-4 flex items-center justify-center gap-5">
+    <div className="container mx-auto max-w-screen-lg pt-6">
+      <div className="mb-4 flex items-center justify-center gap-5 text-lg">
         <NavLink to="/" className={classCallback}>
           Main
         </NavLink>
