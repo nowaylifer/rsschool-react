@@ -6,7 +6,7 @@ export type FormFields = {
   passwordConfirm: string;
   gender?: 'male' | 'female';
   country?: string;
-  terms: string;
+  terms: boolean;
   image?: File;
 };
 

@@ -13,11 +13,6 @@ const colorMap: Record<PasswordStrength | 'default', string> = {
   strong: 'bg-green-500',
 };
 
-export const calcPasswordStrength = (password: string): PasswordStrength => {
-  const len = password.length;
-  return len >= 12 ? 'strong' : len >= 8 ? 'okay' : 'weak';
-};
-
 const getBarColor = (strength: PasswordStrength, index: number) => {
   return Object.values(PasswordStrength).indexOf(strength) >= index ? colorMap[strength] : colorMap.default;
 };

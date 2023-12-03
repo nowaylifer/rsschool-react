@@ -1,5 +1,4 @@
 import {
-  ComponentPropsWithoutRef,
   useReducer,
   useCallback,
   FormEvent,
@@ -8,36 +7,61 @@ import {
   Reducer,
   ReactNode,
   FocusEvent,
+  ComponentProps,
+  useEffect,
 } from 'react';
 import TextField from '../TextField';
 import AutocompleteDropdown, { Option } from './AutocompleteDropdown';
 import { reducer, initializeState, State, Action, InitializerArg } from './Autocomplete.reducer';
 import { cn } from '@/utils';
+import { FieldPath, UseFormRegister } from 'react-hook-form';
+import { FormFields } from '@/types';
 
 const DEFAULT_NOT_FOUND = 'No options';
 
-type Props<T> = {
+type CommonProps<T> = {
   options: Option<T>[];
   defaultOption?: number; // index of options prop array
   showDropdownByDefault?: boolean;
-  onChange?: (option: Option<T>) => void;
   notFoundNode?: ReactNode;
-} & Omit<ComponentPropsWithoutRef<typeof TextField>, 'onBlur' | 'onChange' | 'onFocus' | 'value'>;
+  className?: string;
+} & Omit<ComponentProps<typeof TextField>, 'name'>;
 
-const Autocomplete = <T,>({
+type HookProps<T, TFormFields extends FormFields> = {
+  register: UseFormRegister<TFormFields>;
+  name: FieldPath<TFormFields>;
+} & CommonProps<T>;
+
+type BasicProps<T> = {
+  register?: never;
+  name?: string;
+} & CommonProps<T>;
+
+type Props<T, TFormFields extends FormFields> = HookProps<T, TFormFields> | BasicProps<T>;
+
+const Autocomplete = <T, TFormFields extends FormFields>({
   options,
   defaultOption,
-  onChange,
+  register,
   showDropdownByDefault = false,
   notFoundNode = DEFAULT_NOT_FOUND,
   className,
+  name,
+  value,
   ...delegated
-}: Props<T>) => {
+}: Props<T, TFormFields>) => {
   const [state, dispatch] = useReducer<Reducer<State<T>, Action<T>>, InitializerArg<T>>(
     reducer,
-    { showDropdown: showDropdownByDefault, selectedOption: defaultOption ? options[defaultOption] : null },
+    {
+      inputValue: (value as string) ?? '',
+      showDropdown: showDropdownByDefault,
+      selectedOption: defaultOption ? options[defaultOption] : null,
+    },
     initializeState
   );
+
+  const registerData = register?.(name);
+  const { onBlur, onChange, ref, ...rest } = registerData ?? {};
 
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -63,13 +87,17 @@ const Autocomplete = <T,>({
       e.relatedTarget == null || (e.relatedTarget !== dropDownRef.current && e.relatedTarget !== inputRef.current);
 
     if (isBlurOutside) {
+      onBlur?.(e);
       dispatch({ type: 'BLUR' });
     }
   }, []);
 
+  useEffect(() => {
+    onChange?.({ type: 'input', target: inputRef.current });
+  }, [state.inputValue]);
+
   const handleOptionSelect = useCallback((option: Option<T>) => {
     dispatch({ type: 'SELECT_OPTION', payload: option });
-    onChange?.(option);
   }, []);
 
   return (
@@ -78,10 +106,14 @@ const Autocomplete = <T,>({
         value={state.inputValue}
         onChange={handleInputChange}
         onFocus={handleFocus}
-        ref={inputRef}
+        ref={(input) => {
+          ref?.(input);
+          inputRef.current = input;
+        }}
         autoComplete="nope"
         onBlur={handleBlur}
         {...delegated}
+        {...rest}
       />
       {state.showDropdown && (
         <AutocompleteDropdown

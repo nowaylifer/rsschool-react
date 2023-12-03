@@ -1,8 +1,8 @@
 import { twMerge } from 'tailwind-merge';
 import { clsx, ClassValue } from 'clsx';
-import { object, mixed, string, ObjectSchema, number, ValidationError } from 'yup';
+import { object, mixed, string, ObjectSchema, number, ValidationError, boolean } from 'yup';
 import { IMAGE_MAX_SIZE, IMAGE_EXT } from './constants';
-import { FormFields } from './types';
+import { FormFields, PasswordStrength } from './types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -24,6 +24,11 @@ const allowedMimeTypes = IMAGE_EXT.map((ext) => `image/${ext}`);
 
 const requiredMsg = 'This field is required';
 const trimMsg = 'Must not contain trailing or leading whitespace';
+
+export const calcPasswordStrength = (password: string): PasswordStrength => {
+  const len = password.length;
+  return len >= 12 ? 'strong' : len >= 8 ? 'okay' : 'weak';
+};
 
 export const formSchema: ObjectSchema<FormFields> = object({
   name: string()
@@ -65,16 +70,14 @@ export const formSchema: ObjectSchema<FormFields> = object({
       return this.parent.password === value;
     }),
   country: string().optional(),
-  terms: string<'on'>().required('You must accept terms and conditions'),
+  terms: boolean().default(false).oneOf([true], 'You must accept terms and conditions'),
   image: mixed<File>().when({
     is: (image: File) => !!image,
     then: (schema) =>
       schema
-        .test(
-          'size',
-          `Error: file size exceeds ${IMAGE_MAX_SIZE}MB`,
-          (file) => !!file && file.size / 1e6 < IMAGE_MAX_SIZE
-        )
+        .test('size', `Error: file size exceeds ${IMAGE_MAX_SIZE}MB`, (file) => {
+          return !!file && file.size / 1e6 < IMAGE_MAX_SIZE;
+        })
         .test('extension', 'Error: invalid file extension', (file) => !!file && allowedMimeTypes.includes(file.type)),
   }),
 });

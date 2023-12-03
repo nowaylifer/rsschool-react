@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import Layout from './components/Layout';
-import UncontrolledScreen from './screens/UncontrolledScreen';
+import UncontrolledForm from './screens/UncontrolledForm';
+import HookForm from './screens/HookForm';
 
 const routerConfig: RouteObject[] = [
   {
@@ -12,7 +13,11 @@ const routerConfig: RouteObject[] = [
       },
       {
         path: 'uncontrolled-form',
-        element: <UncontrolledScreen />,
+        element: <UncontrolledForm />,
+      },
+      {
+        path: 'hook-form',
+        element: <HookForm />,
       },
     ],
   },

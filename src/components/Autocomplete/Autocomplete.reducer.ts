@@ -5,6 +5,7 @@ export type State<T> = {
   selectedOption: Option<T> | null;
   inputValue: string;
   isDirty: boolean;
+  disabled?: boolean;
 };
 
 export type Action<T> =
@@ -13,14 +14,20 @@ export type Action<T> =
   | { type: 'BLUR' }
   | { type: 'FOCUS' };
 
-export type InitializerArg<T> = Pick<State<T>, 'showDropdown' | 'selectedOption'>;
+export type InitializerArg<T> = Omit<State<T>, 'isDirty'>;
 
-export const initializeState = <T>({ showDropdown, selectedOption }: InitializerArg<T>): State<T> => {
+export const initializeState = <T>({
+  showDropdown,
+  selectedOption,
+  inputValue,
+  disabled = false,
+}: InitializerArg<T>): State<T> => {
   return {
     showDropdown,
     selectedOption,
-    inputValue: selectedOption ? selectedOption.label : '',
+    inputValue: selectedOption ? selectedOption.label : inputValue,
     isDirty: false,
+    disabled: disabled,
   };
 };
 
